@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:id="@+id/card_pertanyaan"
+    card_view:cardBackgroundColor="#FFFF"
+    card_view:cardCornerRadius="8dp"
+    card_view:contentPadding="10dp"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_ayam_thumbnail">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#80444444"
+            android:layout_alignParentBottom="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_nama_menu"
+                android:text="Ayam goreng"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                card_view:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_harga_menu"
+                android:textSize="16sp"
+                android:text="RP 10.000"
+                android:textColor="#FFCB2F"
+                card_view:layout_constraintTop_toBottomOf="@id/tv_nama_menu"
+                card_view:layout_constraintStart_toStartOf="parent"/>
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="32dp"
+                android:background="#FA5E30"
+                android:textColor="#ffffff"
+                android:text="pesan"
+                android:textSize="10sp"
+                card_view:layout_constraintTop_toBottomOf="@id/tv_harga_menu"
+                card_view:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import e.ardya.foodorderapp.R
+import e.ardya.foodorderapp.adapter.RecycleRecommenAdapter
 import e.ardya.foodorderapp.adapter.RecyclerAdapter
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
         recycler_view_recommend.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
             // set the custom adapter to the RecyclerView
-            adapter = RecyclerAdapter()
+            adapter = RecycleRecommenAdapter()
         }
         recycler_view.apply {
             // set a LinearLayoutManager to handle Android
