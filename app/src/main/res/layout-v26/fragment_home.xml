@@ -15,7 +15,7 @@
             android:id="@+id/label_recommend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recommended5"
+            android:text="Recommended"
             android:textSize="32sp"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_recommend"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -53,36 +53,32 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"
                     android:src="@drawable/img_ayam_thumbnail"/>
-
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.6">
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="25"
-                        android:layout_alignParentLeft="true"
-                        android:textSize="40sp"/>
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignStart="@id/textView2"
-                        android:layout_marginStart="68dp"
-                        android:text="Kursi /n Tersedia"
-                        android:textSize="24sp" />
-
-                    <TextView
+                    android:layout_weight="0.6"
+                    android:weightSum="2">
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Booking Sekarang"
-                        android:textSize="30sp"
-                        android:layout_alignParentBottom="true"/>
-                </RelativeLayout>
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:autoSizeTextType="uniform"
+                            android:text="24">
+                            
+                        </TextView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                    </LinearLayout>
+                </LinearLayout>
+
                 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
