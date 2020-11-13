@@ -15,7 +15,7 @@
             android:id="@+id/label_recommend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recommended5"
+            android:text="Recommended"
             android:textSize="32sp"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_recommend"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -47,12 +47,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp">
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.4"
-                    android:src="@drawable/img_ayam_thumbnail"/>
+                    android:src="@drawable/img_tempat_thumbnail"/>
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -80,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Booking Sekarang"
-                        android:textSize="30sp"
+                        android:textSize="28sp"
                         android:layout_alignParentBottom="true"/>
                 </RelativeLayout>
                 

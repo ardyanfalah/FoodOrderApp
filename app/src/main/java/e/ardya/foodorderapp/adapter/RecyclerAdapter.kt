@@ -13,14 +13,14 @@ import kotlinx.android.synthetic.main.card_layout.view.*
 class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var itemKode: TextView
-        var itemKategori: TextView
-        var itemIsi: TextView
+//        var itemKode: TextView
+//        var itemKategori: TextView
+//        var itemIsi: TextView
 
         init {
-            itemKode = itemView.findViewById(R.id.kodePertanyaan)
-            itemKategori = itemView.findViewById(R.id.kategori)
-            itemIsi = itemView.findViewById(R.id.isiPertanyaan)
+//            itemKode = itemView.findViewById(R.id.kodePertanyaan)
+//            itemKategori = itemView.findViewById(R.id.kategori)
+//            itemIsi = itemView.findViewById(R.id.isiPertanyaan)
 
 //            itemView.setOnClickListener {
 //                var position: Int = getAdapterPosition()
@@ -57,9 +57,9 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemKode.text = kode[i]
-        viewHolder.itemKategori.text = kategori[i]
-        viewHolder.itemIsi.text = isi[i]
+//        viewHolder.itemKode.text = kode[i]
+//        viewHolder.itemKategori.text = kategori[i]
+//        viewHolder.itemIsi.text = isi[i]
 
     }
 
