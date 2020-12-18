@@ -53,12 +53,19 @@
                 android:layout_height="wrap_content"
                 android:text="RP 10.000"
                 android:textSize="16sp" />
+
             <RatingBar
                 android:id="@+id/ratingBar1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:isIndicator="true"
                 android:numStars="5"
-                android:rating="3.5"/>
+                android:rating="3.5"
+                android:scaleX=".5"
+                android:scaleY=".5"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp" />
+
             <Button
                 android:id="@+id/button2"
                 android:layout_width="69dp"
