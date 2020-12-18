@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="160dp"
     android:layout_marginTop="12dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
@@ -23,6 +23,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.8">
             <ImageView
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/img_ayam_thumbnail"/>
@@ -37,59 +38,39 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:textSize="20sp"
                 android:text="Ayam Goreng"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="Ayam goreng bumbu kuning gurih khas cijere"
                 android:textSize="12sp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:text="RP 10.000"/>
+                android:text="RP 10.000"
+                android:textSize="16sp" />
+            <RatingBar
+                android:id="@+id/ratingBar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="3.5"/>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="69dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end"
+                android:background="#FA5E30"
+                android:text="pesan"
+                android:textColor="#ffffff"
+                android:textSize="10sp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/tv_harga_menu" />
         </LinearLayout>
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/kodePertanyaan"-->
-<!--                android:layout_width="181dp"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="68dp"-->
-<!--                android:text="default" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/kategori"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:text="default"-->
-<!--                android:gravity="end|center_vertical"/>-->
-
-<!--        </LinearLayout>-->
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/isiPertanyaan"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="36dp"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginTop="44dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                android:gravity="top"-->
-<!--                android:text="default" />-->
-
-<!--        </LinearLayout>-->
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
