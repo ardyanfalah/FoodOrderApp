@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -137,20 +137,20 @@
         android:layout_marginStart="68dp"
         android:layout_marginTop="36dp"
         android:text="Sudah punya akun?"
-        app:layout_constraintEnd_toStartOf="@+id/btnRegister"
+        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
         app:layout_constraintHorizontal_bias="0.318"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegis" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="112dp"
         android:text="Masuk"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegis"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

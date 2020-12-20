@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.lifecycle.ViewModel
 import e.ardya.foodorderapp.activity.MainActivity
 
-class RegistraionViewModel:ViewModel() {
+class RegisterViewModel:ViewModel() {
     var mName: String=""
     var mPassword: String=""
     var mAddress: String=""
