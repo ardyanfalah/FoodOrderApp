@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
+        homeViewModel.getMenu()
         recycler_view_recommend.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
             // set the custom adapter to the RecyclerView

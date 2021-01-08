@@ -53,30 +53,40 @@
                 android:layout_height="wrap_content"
                 android:text="RP 10.000"
                 android:textSize="16sp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/container_rating"
+    android:layout_weight="2"
+    >
+    <RatingBar
+        android:layout_gravity="bottom"
+        android:id="@+id/ratingBar1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="5"
+        android:max="5"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        android:transformPivotX="0dp"
+        android:transformPivotY="0dp"
+        android:layout_weight="1"/>
 
-            <RatingBar
-                android:id="@+id/ratingBar1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="3.5"
-                android:scaleX=".5"
-                android:scaleY=".5"
-                android:transformPivotX="0dp"
-                android:transformPivotY="0dp" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="27dp"
+        android:layout_gravity="bottom"
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="69dp"
-                android:layout_height="32dp"
-                android:layout_gravity="end"
-                android:background="#FA5E30"
-                android:text="pesan"
-                android:textColor="#ffffff"
-                android:textSize="10sp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@id/tv_harga_menu" />
+        android:background="#FA5E30"
+        android:text="pesan"
+        android:textColor="#ffffff"
+        android:textSize="10sp"
+        android:layout_weight="1"/>
+</LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

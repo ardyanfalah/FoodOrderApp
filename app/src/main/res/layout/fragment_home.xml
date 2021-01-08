@@ -10,6 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_welcome"
+            android:id="@+id/layout_welcome"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/label_recommend"
+            android:padding="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selamat Datang, Firda!"
+                android:textColor="#ffffff"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Silakan pilih makanan favoritmu"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/label_recommend"
@@ -17,8 +38,10 @@
             android:layout_height="wrap_content"
             android:text="Recommended"
             android:textSize="32sp"
+            app:layout_constraintTop_toBottomOf="@id/layout_welcome"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_recommend"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_recommend"
@@ -47,9 +70,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp">
+                android:layout_height="match_parent">
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -76,13 +97,13 @@
                         android:layout_alignStart="@id/textView2"
                         android:layout_marginStart="68dp"
                         android:text="Kursi\nTersedia"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Booking Sekarang"
-                        android:textSize="28sp"
+                        android:textSize="24sp"
                         android:layout_alignParentBottom="true"/>
                 </RelativeLayout>
                 
