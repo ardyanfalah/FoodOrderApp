@@ -13,9 +13,9 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 private const val PROTOCOL = "http://"
-private const val BASE_URL = "192.168.1.6"
+private const val BASE_URL = "192.168.100.10"
 private const val PORT_V1 = ":8080"
-private const val PATH = "/"
+private const val PATH = "/food-order/"
 private const val IMAGE = "/api/view-data/image?filename="
 private var API = PROTOCOL + BASE_URL + PORT_V1 + PATH
 var IMG = "${API}view-data/image?filename="

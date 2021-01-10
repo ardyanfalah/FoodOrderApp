@@ -6,7 +6,7 @@
     app:startDestination="@+id/navigation_register">
     <fragment
         android:id="@+id/navigation_login"
-        android:name="e.ardya.foodorderapp.view.LoginFragment"
+        android:name="e.ardya.foodorderapp.fragment.LoginFragment"
         android:label="@string/title_notifications">
         <action
             android:id="@+id/action_navigation_login_to_navigation_register2"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_register"
-        android:name="e.ardya.foodorderapp.view.RegisterFragment"
+        android:name="e.ardya.foodorderapp.fragment.RegisterFragment"
         android:label="@string/title_notifications">
         <action
             android:id="@+id/action_navigation_register_to_navigation_login2"

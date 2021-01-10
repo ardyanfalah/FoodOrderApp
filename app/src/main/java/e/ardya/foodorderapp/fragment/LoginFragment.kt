@@ -1,4 +1,4 @@
-package e.ardya.foodorderapp.view
+package e.ardya.foodorderapp.fragment
 
 import android.content.Intent
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package e.ardya.foodorderapp.view
+package e.ardya.foodorderapp.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,22 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import e.ardya.foodorderapp.R
-import e.ardya.foodorderapp.viewmodel.AccountViewModel
+import e.ardya.foodorderapp.viewmodel.OrderViewModel
 
-class AccountFragment : Fragment() {
+class OrderFragment : Fragment() {
 
-    private lateinit var accountViewModel: AccountViewModel
+    private lateinit var orderViewModel: OrderViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        accountViewModel =
-                ViewModelProviders.of(this).get(AccountViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_account, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        accountViewModel.text.observe(viewLifecycleOwner, Observer {
+        orderViewModel =
+                ViewModelProviders.of(this).get(OrderViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_order, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        orderViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

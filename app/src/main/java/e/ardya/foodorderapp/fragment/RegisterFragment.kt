@@ -1,4 +1,4 @@
-package e.ardya.foodorderapp.view
+package e.ardya.foodorderapp.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
