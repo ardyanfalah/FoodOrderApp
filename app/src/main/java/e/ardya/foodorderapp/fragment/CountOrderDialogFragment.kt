@@ -2,12 +2,10 @@ package e.ardya.foodorderapp.fragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import e.ardya.foodorderapp.R
+
 
 class CountOrderDialogFragment : DialogFragment() {
 
@@ -40,12 +38,20 @@ class CountOrderDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView(view)
         setupClickListeners(view)
+
+//        val window: Window? = dialog!!.window
+//        if(window != null){
+////            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+//            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+//        }
+
+
     }
 
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
     }
