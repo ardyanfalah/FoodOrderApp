@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,7 +74,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
         })
     }
 
-    override fun onItemClick(menu: MenuModel) {
-        TODO("Not yet implemented")
+    override fun onItemClick(menu: MenuModel.Data) {
+        Log.d("Menu Clicked",menu.toString())
+        var dialog:CountOrderDialogFragment = CountOrderDialogFragment()
+        this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
     }
 }

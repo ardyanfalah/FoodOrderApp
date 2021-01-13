@@ -14,13 +14,18 @@ import kotlinx.android.synthetic.main.card_layout.view.*
 
 class RecyclerAdapter(private val listMenu : ArrayList<MenuModel.Data>, private val listener : Listener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     interface Listener {
-        fun onItemClick(menu : MenuModel)
+        fun onItemClick(menu : MenuModel.Data)
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var itemNama: TextView = itemView.findViewById(R.id.tv_nama_menu)
         var itemDesc: TextView = itemView.findViewById(R.id.tv_desc_menu)
         var itemHarga: TextView = itemView.findViewById(R.id.tv_harga_menu)
+
+        fun bind(menu:MenuModel.Data, listener: Listener, position:Int){
+            itemView.setOnClickListener{ listener.onItemClick(menu) }
+
+        }
 
         init {
             Log.d("Log init=>",listMenu.toString())
@@ -38,21 +43,6 @@ class RecyclerAdapter(private val listMenu : ArrayList<MenuModel.Data>, private 
             }
         }
     }
-    private val kode = arrayOf("d116df5",
-        "36ffc75", "f5cfe78", "5b87628",
-        "db8d14e", "9913dc4", "e120f96",
-        "466251b")
-
-    private val kategori = arrayOf("Kekayaan", "Teknologi",
-        "Keluarga", "Bisnis",
-        "Keluarga", "Hutang",
-        "Teknologi", "Pidana")
-
-    private val isi = arrayOf("pertanyaan 9",
-        "pertanyaan 11", "pertanyaan 17", "test forum",
-        "pertanyaan 12", "pertanyaan 18", "pertanyaan 20",
-        "pertanyaan 21")
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.card_layout, viewGroup, false)
@@ -61,6 +51,7 @@ class RecyclerAdapter(private val listMenu : ArrayList<MenuModel.Data>, private 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         Log.d("bind=>",i.toString())
+        viewHolder.bind(listMenu[i],listener,i)
         viewHolder.itemNama.text = listMenu[i].Nama_Menu
         viewHolder.itemDesc.text = listMenu[i].Deskripsi_Menu
         viewHolder.itemHarga.text = listMenu[i].Harga_Menu
