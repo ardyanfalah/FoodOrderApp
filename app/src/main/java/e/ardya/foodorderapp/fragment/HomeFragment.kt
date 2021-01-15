@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 // RecyclerView behavior
                 layoutManager = LinearLayoutManager(activity)
                 // set the custom adapter to the RecyclerView
-                adapter = RecyclerAdapter(it,this@HomeFragment)
+                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
             }
         })
         recycler_view_recommend.apply {

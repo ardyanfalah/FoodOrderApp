@@ -1,18 +1,22 @@
 package e.ardya.foodorderapp.adapter
 
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.data.model.MenuModel
 import kotlinx.android.synthetic.main.card_layout.view.*
 
 
-class RecyclerAdapter(private val listMenu : ArrayList<MenuModel.Data>, private val listener : Listener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter( private val context:Context,private val listMenu : ArrayList<MenuModel.Data>, private val listener : Listener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     interface Listener {
         fun onItemClick(menu : MenuModel.Data)
     }
@@ -21,6 +25,7 @@ class RecyclerAdapter(private val listMenu : ArrayList<MenuModel.Data>, private 
         var itemNama: TextView = itemView.findViewById(R.id.tv_nama_menu)
         var itemDesc: TextView = itemView.findViewById(R.id.tv_desc_menu)
         var itemHarga: TextView = itemView.findViewById(R.id.tv_harga_menu)
+        var itemImage:ImageView = itemView.findViewById(R.id.iv_image_menu)
 
         fun bind(menu:MenuModel.Data, listener: Listener, position:Int){
             itemView.setOnClickListener{ listener.onItemClick(menu) }
@@ -51,6 +56,9 @@ class RecyclerAdapter(private val listMenu : ArrayList<MenuModel.Data>, private 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         Log.d("bind=>",i.toString())
+        Glide.with(context).load(listMenu.get(i).Image_Menu)
+            .apply(RequestOptions().centerCrop())
+            .into(viewHolder.itemImage)
         viewHolder.bind(listMenu[i],listener,i)
         viewHolder.itemNama.text = listMenu[i].Nama_Menu
         viewHolder.itemDesc.text = listMenu[i].Deskripsi_Menu
