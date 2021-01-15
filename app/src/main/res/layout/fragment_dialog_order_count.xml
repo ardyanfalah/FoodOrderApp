@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_food_counter"
+    android:layout_marginBottom="?android:attr/actionBarSize"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
     android:paddingStart="8dp"

@@ -39,11 +39,16 @@ class CountOrderDialogFragment : DialogFragment() {
         setupView(view)
         setupClickListeners(view)
 
-//        val window: Window? = dialog!!.window
-//        if(window != null){
-////            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-//        }
+        val window: Window? = dialog!!.window
+        if(window != null){
+            window.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL, WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            window.setGravity(Gravity.BOTTOM)
+            val params = window.attributes
+            params.y = 150
+            params.x = 100
+            window.attributes=params
+        }
 
 
     }
@@ -51,7 +56,7 @@ class CountOrderDialogFragment : DialogFragment() {
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
-            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
     }
