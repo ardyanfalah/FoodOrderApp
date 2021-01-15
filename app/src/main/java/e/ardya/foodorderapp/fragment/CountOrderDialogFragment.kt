@@ -12,7 +12,6 @@ class CountOrderDialogFragment : DialogFragment() {
     companion object {
 
         const val TAG = "CountOrderDialogFragment"
-
         private const val KEY_TITLE = "KEY_TITLE"
         private const val KEY_SUBTITLE = "KEY_SUBTITLE"
 
@@ -24,7 +23,6 @@ class CountOrderDialogFragment : DialogFragment() {
             fragment.arguments = args
             return fragment
         }
-
     }
 
     override fun onCreateView(
@@ -49,8 +47,6 @@ class CountOrderDialogFragment : DialogFragment() {
             params.x = 100
             window.attributes=params
         }
-
-
     }
 
     override fun onStart() {

@@ -16,6 +16,7 @@ class HomeViewModel : BaseVM() {
     val text: LiveData<String> = _text
     var mMenuModel: ArrayList<MenuModel.Data>? = ArrayList()
     var listMenu = MutableLiveData<ArrayList<MenuModel.Data>>()
+    var listOrder = MutableLiveData<ArrayList<MenuModel.Data>>()
 
     fun getMenu(){
         dataLoading.postValue(true)
@@ -34,5 +35,11 @@ class HomeViewModel : BaseVM() {
                 Log.d("menu fail=>",it.toString())
             }
         )
+    }
+
+    fun addOrder(menu:MenuModel.Data){
+        val array : ArrayList<MenuModel.Data>? = listOrder.value
+        array?.add(menu)
+        listOrder.postValue(array)
     }
 }

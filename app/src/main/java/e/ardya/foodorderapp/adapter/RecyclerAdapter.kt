@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.net.RetrofitClient
 import kotlinx.android.synthetic.main.card_layout.view.*
 
 
@@ -29,7 +31,6 @@ class RecyclerAdapter( private val context:Context,private val listMenu : ArrayL
 
         fun bind(menu:MenuModel.Data, listener: Listener, position:Int){
             itemView.setOnClickListener{ listener.onItemClick(menu) }
-
         }
 
         init {
@@ -56,7 +57,7 @@ class RecyclerAdapter( private val context:Context,private val listMenu : ArrayL
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         Log.d("bind=>",i.toString())
-        Glide.with(context).load(listMenu.get(i).Image_Menu)
+        Glide.with(context).load(RetrofitClient.getImage() + listMenu.get(i).Image_Menu)
             .apply(RequestOptions().centerCrop())
             .into(viewHolder.itemImage)
         viewHolder.bind(listMenu[i],listener,i)

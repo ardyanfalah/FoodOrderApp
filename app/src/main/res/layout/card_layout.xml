@@ -83,7 +83,7 @@
                     android:transformPivotY="0dp" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btn_order_menu"
                     android:layout_width="0dp"
                     android:layout_height="27dp"
                     android:layout_gravity="bottom"
