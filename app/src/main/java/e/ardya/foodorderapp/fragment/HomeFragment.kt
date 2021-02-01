@@ -25,6 +25,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    var dialog:CountOrderDialogFragment = CountOrderDialogFragment()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -76,7 +77,8 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
 
     override fun onItemClick(menu: MenuModel.Data) {
         Log.d("Menu Clicked",menu.toString())
-        var dialog:CountOrderDialogFragment = CountOrderDialogFragment()
-        this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
+        if(!dialog.isVisible){
+            this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
+        }
     }
 }
