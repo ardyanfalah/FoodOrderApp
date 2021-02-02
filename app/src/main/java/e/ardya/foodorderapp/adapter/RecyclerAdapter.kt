@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.card_layout.view.*
 class RecyclerAdapter( private val context:Context,private val listMenu : ArrayList<MenuModel.Data>, private val listener : Listener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     interface Listener {
         fun onItemClick(menu : MenuModel.Data)
+        fun onOrder(menu: MenuModel.Data, position: Int)
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -28,24 +29,17 @@ class RecyclerAdapter( private val context:Context,private val listMenu : ArrayL
         var itemDesc: TextView = itemView.findViewById(R.id.tv_desc_menu)
         var itemHarga: TextView = itemView.findViewById(R.id.tv_harga_menu)
         var itemImage:ImageView = itemView.findViewById(R.id.iv_image_menu)
+        var btnOrder:Button = itemView.findViewById(R.id.btn_order_menu)
 
         fun bind(menu:MenuModel.Data, listener: Listener, position:Int){
             itemView.setOnClickListener{ listener.onItemClick(menu) }
+            btnOrder.setOnClickListener{ listener.onOrder(menu,position)}
         }
 
         init {
-            Log.d("Log init=>",listMenu.toString())
+//            Log.d("Log init=>",listMenu.toString())
             itemView.setOnClickListener {
                 Log.d("Log onclick=>",it.tv_nama_menu.text.toString())
-//                var position: Int = getAdapterPosition()
-//                val context = itemView.context
-//                val intent = Intent(context, DetailPertanyaan::class.java).apply {
-//                    putExtra("NUMBER", position)
-//                    putExtra("CODE", itemKode.text)
-//                    putExtra("CATEGORY", itemKategori.text)
-//                    putExtra("CONTENT", itemIsi.text)
-//                }
-//                context.startActivity(intent)
             }
         }
     }

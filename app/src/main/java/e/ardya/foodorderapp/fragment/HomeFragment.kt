@@ -21,6 +21,10 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
 
+    interface listener {
+
+    }
+
     private lateinit var homeViewModel: HomeViewModel
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
@@ -46,7 +50,6 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
         initObserve()
         homeViewModel.getMenu()
         homeViewModel.listMenu.observe(viewLifecycleOwner, Observer {
-            Log.d("List Menu",it.toString())
             recycler_view.apply {
                 // set a LinearLayoutManager to handle Android
                 // RecyclerView behavior
@@ -76,6 +79,10 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     }
 
     override fun onItemClick(menu: MenuModel.Data) {
+
+    }
+
+    override fun onOrder(menu: MenuModel.Data, position: Int) {
         Log.d("Menu Clicked",menu.toString())
         if(!dialog.isVisible){
             this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
