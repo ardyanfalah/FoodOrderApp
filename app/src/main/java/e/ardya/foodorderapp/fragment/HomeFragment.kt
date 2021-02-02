@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -30,6 +31,8 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     var dialog:CountOrderDialogFragment = CountOrderDialogFragment()
+    var orders:List<MenuModel.Data> = listOf()
+    var totalPrice: Int= 0
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -86,6 +89,8 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
         Log.d("Menu Clicked",menu.toString())
         if(!dialog.isVisible){
             this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
+        } else {
+
         }
     }
 }

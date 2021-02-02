@@ -3,8 +3,11 @@ package e.ardya.foodorderapp.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import e.ardya.foodorderapp.R
+import e.ardya.foodorderapp.data.model.MenuModel
+import kotlinx.android.synthetic.main.fragment_dialog_order_count.*
 
 
 class CountOrderDialogFragment : DialogFragment() {
@@ -21,10 +24,13 @@ class CountOrderDialogFragment : DialogFragment() {
             args.putString(KEY_SUBTITLE, subTitle)
             val fragment = CountOrderDialogFragment()
             fragment.arguments = args
+            fragment.showsDialog
             return fragment
         }
     }
 
+
+    var tvTotalPrice : TextView =tv_harga_total
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,12 +55,20 @@ class CountOrderDialogFragment : DialogFragment() {
         }
     }
 
+    private fun initView(){
+        this.tvTotalPrice = tv_harga_total
+    }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
+    }
+
+    private fun setPriceTotal(){
+
     }
 
     private fun setupView(view: View) {
