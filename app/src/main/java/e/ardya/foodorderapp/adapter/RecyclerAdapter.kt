@@ -1,7 +1,6 @@
 package e.ardya.foodorderapp.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +44,7 @@ class RecyclerAdapter( private val context:Context,private val listMenu : ArrayL
     }
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.card_layout, viewGroup, false)
+            .inflate(R.layout.item_menu, viewGroup, false)
         return ViewHolder(v)
     }
 

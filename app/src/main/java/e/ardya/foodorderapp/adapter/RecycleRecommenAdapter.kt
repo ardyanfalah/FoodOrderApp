@@ -48,7 +48,7 @@ class RecycleRecommenAdapter : RecyclerView.Adapter<RecycleRecommenAdapter.ViewH
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.card_recommend_layout, viewGroup, false)
+            .inflate(R.layout.item_menu_recommend, viewGroup, false)
         return ViewHolder(v)
     }
 
