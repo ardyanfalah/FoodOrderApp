@@ -17,7 +17,10 @@ class HomeViewModel : BaseVM() {
     var mMenuModel: ArrayList<MenuModel.Data>? = ArrayList()
     var listMenu = MutableLiveData<ArrayList<MenuModel.Data>>()
     var listOrder = MutableLiveData<ArrayList<MenuModel.Data>>()
-
+    var totalPrice = MutableLiveData<String>()
+    init {
+        listOrder.value = ArrayList()
+    }
     fun getMenu(){
         dataLoading.postValue(true)
 
@@ -38,8 +41,14 @@ class HomeViewModel : BaseVM() {
     }
 
     fun addOrder(menu:MenuModel.Data){
-        val array : ArrayList<MenuModel.Data>? = listOrder.value
-        array?.add(menu)
-        listOrder.postValue(array)
+        listOrder.value?.add(menu)
+        listOrder.postValue(listOrder.value)
+//        listOrder.value = ArrayList()
+//        val array : ArrayList<MenuModel.Data> = listOrder.value
+//        array.add(menu)
+//        listOrder.postValue(array)
+    }
+    fun addTotalPrice(price:String){
+        totalPrice.value = "Rp. $price"
     }
 }

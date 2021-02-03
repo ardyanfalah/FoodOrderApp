@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,16 +23,12 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
 
-    interface listener {
-
-    }
-
     private lateinit var homeViewModel: HomeViewModel
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     var dialog:CountOrderDialogFragment = CountOrderDialogFragment()
-    var orders:List<MenuModel.Data> = listOf()
+    var orders:ArrayList<MenuModel.Data> = ArrayList()
     var totalPrice: Int= 0
 
     override fun onCreateView(
@@ -39,12 +36,8 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        //        val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
+        homeViewModel =ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
+
 
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -61,6 +54,21 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
             }
         })
+        homeViewModel.listOrder.observe(viewLifecycleOwner, Observer {
+            if(!it.isNullOrEmpty()){
+                val temp = it
+                var priceTotal:Int = 0
+                var tempHarga:Int = 0
+                temp.forEach { item ->
+                    if(!item.Harga_Menu.isNullOrEmpty()){
+                        tempHarga = item.Harga_Menu!!.toInt()
+                        priceTotal += tempHarga
+                    }
+                }
+                homeViewModel.addTotalPrice(priceTotal.toString())
+            }
+        })
+
         recycler_view_recommend.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
             // set the custom adapter to the RecyclerView
@@ -89,8 +97,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
         Log.d("Menu Clicked",menu.toString())
         if(!dialog.isVisible){
             this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
+            homeViewModel.addOrder(menu)
         } else {
-
+            homeViewModel.addOrder(menu)
         }
     }
 }
