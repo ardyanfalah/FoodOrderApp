@@ -4,9 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import e.ardya.foodorderapp.base.BaseVM
 import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.data.net.service.MenuService
+import org.json.JSONArray
 
 class HomeViewModel : BaseVM() {
 
@@ -38,6 +40,12 @@ class HomeViewModel : BaseVM() {
                 Log.d("menu fail=>",it.toString())
             }
         )
+    }
+
+    fun sendOrder(){
+        val jsonTemp: String? = Gson().toJson(listOrder.value)
+        Log.d("test json=>",jsonTemp.toString())
+
     }
 
     fun addOrder(menu:MenuModel.Data){

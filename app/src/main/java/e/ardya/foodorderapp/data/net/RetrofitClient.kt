@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit
 private const val PROTOCOL = "http://"
 //private const val BASE_URL = "192.168.100.6"
 //private const val BASE_URL = "192.168.1.74"
+
 private const val BASE_URL = "192.168.1.87"
 
 private const val PORT_V1 = ":8080"

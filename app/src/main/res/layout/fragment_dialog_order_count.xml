@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-    <data xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
         <variable
             name="viewModel"
             type="e.ardya.foodorderapp.viewmodel.HomeViewModel" />
@@ -58,7 +58,7 @@
             app:layout_constraintLeft_toRightOf="@id/tv_minumal_count"/>
 
         <TextView
-            android:id="@+id/tv_harga_total"
+            android:id="@+id/tv_harga_total_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.totalPrice}"
