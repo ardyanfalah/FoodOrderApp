@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.data.net.RetrofitClient
-import kotlinx.android.synthetic.main.card_layout.view.*
+import kotlinx.android.synthetic.main.item_menu.view.*
 
 
 class RecyclerAdapter( private val context:Context,private val listMenu : ArrayList<MenuModel.Data>, private val listener : Listener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
