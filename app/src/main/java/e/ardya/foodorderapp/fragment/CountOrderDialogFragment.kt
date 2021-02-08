@@ -1,20 +1,15 @@
 package e.ardya.foodorderapp.fragment
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
 import e.ardya.foodorderapp.R
-import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.databinding.FragmentDialogOrderCountBinding
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_dialog_order_count.*
 
 
 class CountOrderDialogFragment : DialogFragment() {
@@ -89,12 +84,14 @@ class CountOrderDialogFragment : DialogFragment() {
 
     private fun setupView(view: View) {
 //        view.tvTitle.text = arguments?.getString(KEY_TITLE)
-//        view.tvSubTitle.text = arguments?.getString(KEY_SUBTITLE)
+//        view.tvSubTitle.text = arguments?.gretString(KEY_SUBTITLE)
     }
 
     private fun setupClickListeners(view: View) {
         view.setOnClickListener{
-            Log.d("debug Dialog","Clicked")
+            dismiss()
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_home_to_detailOrderFragment)
+
         }
 //        view.btnPositive.setOnClickListener {
 //            // TODO: Do some task here

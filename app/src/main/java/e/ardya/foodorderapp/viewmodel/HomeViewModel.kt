@@ -4,9 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import e.ardya.foodorderapp.base.BaseVM
 import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.MenuService
+import org.json.JSONArray
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeViewModel : BaseVM() {
 
@@ -40,8 +46,23 @@ class HomeViewModel : BaseVM() {
         )
     }
 
+    fun sendOrder(){
+        val jsonTemp: String? = Gson().toJson(listOrder.value)
+        Log.d("test json=>",jsonTemp.toString())
+
+    }
+
     fun addOrder(menu:MenuModel.Data){
-        listOrder.value?.add(menu)
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val currentDate = sdf.format(Date())
+        var transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
+        transaksiTemp.Id_Trx = 0
+        transaksiTemp.Id_Admin = 0
+        transaksiTemp.Id_Pelanggan = 2
+        transaksiTemp.Id_Menu = menu.Id_Menu
+        transaksiTemp.Harga_Menu = menu.Harga_Menu
+        transaksiTemp.Jumlah_Makanan = 1
+//        listOrder.value?.add(menu)
         listOrder.postValue(listOrder.value)
 //        listOrder.value = ArrayList()
 //        val array : ArrayList<MenuModel.Data> = listOrder.value

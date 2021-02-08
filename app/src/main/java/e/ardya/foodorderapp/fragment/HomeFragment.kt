@@ -37,8 +37,6 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
             savedInstanceState: Bundle?
     ): View? {
         homeViewModel =ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
-
-
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
@@ -102,4 +100,5 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
             homeViewModel.addOrder(menu)
         }
     }
+
 }

@@ -18,38 +18,37 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Buat Akun"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:layout_marginStart="24dp"
+        android:layout_height="320dp"
         android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_view_detail_order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        android:background="@drawable/bg_card_radius"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Masuk"
+        android:textSize="10pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:text="Email"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/editText4"
@@ -93,8 +92,10 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
         android:text="Masuk"
+        android:textColor="@color/color_white"
+        android:background="@drawable/bg_btn_login_orange"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText5" />
 
@@ -106,16 +107,18 @@
         android:text="Sudah punya akun?"
         app:layout_constraintEnd_toStartOf="@+id/btnRegis"
         app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
         android:id="@+id/btnRegis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="56dp"
         android:text="Buat Akun"
+        android:textColor="@color/color_orange"
+        android:background="@drawable/btn_bg_daftar_white_"
         app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
