@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +30,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         homeViewModel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
         return inflater.inflate(R.layout.fragment_detail_order, container, false)
     }
@@ -54,9 +56,6 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         })
     }
 
-    override fun onItemClick(menu: MenuModel.Data) {
-        TODO("Not yet implemented")
-    }
     private fun setupClickListeners(view: View) {
         view.setOnClickListener{
 
@@ -72,5 +71,8 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 //            // TODO: Do some task here
 //            dismiss()
 //        }
+    }
+
+    override fun onItemClick(menu: MenuModel.Data) {
     }
 }

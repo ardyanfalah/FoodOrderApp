@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.activity.MainActivity
 import e.ardya.foodorderapp.activity.RegistrationActivity
@@ -24,6 +25,7 @@ class LoginFragment: Fragment() {
             startActivity(intent)
         }
         root.btnRegis.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_login_to_navigation_register2)
 
         }
         return root

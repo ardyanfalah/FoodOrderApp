@@ -53,8 +53,8 @@ class HomeViewModel : BaseVM() {
     }
 
     fun addOrder(menu:MenuModel.Data){
-        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-        val currentDate = sdf.format(Date())
+        val currentDate = SimpleDateFormat("yyyy-MM-dd").format(Date())
+        var currentMenu = listOrder.value
         var transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
         transaksiTemp.Id_Trx = 0
         transaksiTemp.Id_Admin = 0
@@ -62,13 +62,19 @@ class HomeViewModel : BaseVM() {
         transaksiTemp.Id_Menu = menu.Id_Menu
         transaksiTemp.Harga_Menu = menu.Harga_Menu
         transaksiTemp.Jumlah_Makanan = 1
-//        listOrder.value?.add(menu)
+        transaksiTemp.Tanggal_Trx = currentDate
+        listOrder.value?.add(menu)
         listOrder.postValue(listOrder.value)
 //        listOrder.value = ArrayList()
 //        val array : ArrayList<MenuModel.Data> = listOrder.value
 //        array.add(menu)
 //        listOrder.postValue(array)
     }
+
+    fun removeOrder(menu:MenuModel.Data){
+
+    }
+
     fun addTotalPrice(price:String){
         totalPrice.value = "Rp. $price"
     }

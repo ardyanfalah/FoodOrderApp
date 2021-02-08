@@ -1,5 +1,7 @@
 package e.ardya.foodorderapp.activity
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         try
         {
-            this.supportActionBar?.hide();
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.hide()
         }catch (e: Exception){
             Log.d("Error ",e.toString())
         }
