@@ -22,7 +22,7 @@ class HomeViewModel : BaseVM() {
     val text: LiveData<String> = _text
     var mMenuModel: ArrayList<MenuModel.Data>? = ArrayList()
     var listMenu = MutableLiveData<ArrayList<MenuModel.Data>>()
-    var listOrder = MutableLiveData<ArrayList<MenuModel.Data>>()
+    var listOrder = MutableLiveData<ArrayList<TransaksiModel.ItemTransaksi>>()
     var totalPrice = MutableLiveData<String>()
     init {
         listOrder.value = ArrayList()
@@ -52,10 +52,10 @@ class HomeViewModel : BaseVM() {
 
     }
 
-    fun addOrder(menu:MenuModel.Data){
+    fun addOrder(menu:MenuModel.Data,position:Int){
         val currentDate = SimpleDateFormat("yyyy-MM-dd").format(Date())
         var currentMenu = listOrder.value
-        var transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
+        val transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
         transaksiTemp.Id_Trx = 0
         transaksiTemp.Id_Admin = 0
         transaksiTemp.Id_Pelanggan = 2
@@ -63,8 +63,16 @@ class HomeViewModel : BaseVM() {
         transaksiTemp.Harga_Menu = menu.Harga_Menu
         transaksiTemp.Jumlah_Makanan = 1
         transaksiTemp.Tanggal_Trx = currentDate
-        listOrder.value?.add(menu)
-        listOrder.postValue(listOrder.value)
+        transaksiTemp.Nama_Menu = menu.Nama_Menu
+        if(listOrder.value?.isEmpty()!! || !listOrder.value?.contains(transaksiTemp)!!){
+            listOrder.value?.add(transaksiTemp)
+            listOrder.postValue(listOrder.value)
+        } else if(listOrder.value?.contains(transaksiTemp)!!){
+            listOrder.value?.find { it.Id_Menu == transaksiTemp.Id_Menu }?.Jumlah_Makanan=+3
+            listOrder.postValue(listOrder.value)
+        }
+
+
 //        listOrder.value = ArrayList()
 //        val array : ArrayList<MenuModel.Data> = listOrder.value
 //        array.add(menu)

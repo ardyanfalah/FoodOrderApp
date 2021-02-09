@@ -15,6 +15,7 @@ import e.ardya.foodorderapp.adapter.RecycleMenuOrderAdapter
 import e.ardya.foodorderapp.adapter.RecyclerAdapter
 import e.ardya.foodorderapp.base.BaseFragment
 import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_detail_order.*
 import kotlinx.android.synthetic.main.fragment_detail_order.view.*
@@ -73,6 +74,6 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 //        }
     }
 
-    override fun onItemClick(menu: MenuModel.Data) {
+    override fun onItemClick(order: TransaksiModel.ItemTransaksi) {
     }
 }

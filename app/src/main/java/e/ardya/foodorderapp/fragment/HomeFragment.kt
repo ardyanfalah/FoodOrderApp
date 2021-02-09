@@ -47,7 +47,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 // RecyclerView behavior
                 layoutManager = LinearLayoutManager(activity)
                 // set the custom adapter to the RecyclerView
-                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
+                this@HomeFragment.adapter=activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
+//                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
+                adapter = this@HomeFragment.adapter
             }
         })
         homeViewModel.listOrder.observe(viewLifecycleOwner, Observer {
@@ -57,7 +59,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 var tempHarga:Int = 0
                 temp.forEach { item ->
                     if(!item.Harga_Menu.isNullOrEmpty()){
-                        tempHarga = item.Harga_Menu!!.toInt()
+                        tempHarga = item.Harga_Menu!!.toInt()*item.Jumlah_Makanan!!
                         priceTotal += tempHarga
                     }
                 }
@@ -93,9 +95,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
         Log.d("Menu Clicked",menu.toString())
         if(!dialog.isVisible){
             this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
-            homeViewModel.addOrder(menu)
+            homeViewModel.addOrder(menu,position)
         } else {
-            homeViewModel.addOrder(menu)
+            homeViewModel.addOrder(menu,position)
         }
     }
 

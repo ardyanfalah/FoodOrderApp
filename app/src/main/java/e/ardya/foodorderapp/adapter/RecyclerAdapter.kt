@@ -43,14 +43,13 @@ class RecyclerAdapter(
             btnOrder.setOnClickListener { listener.onOrder(menu, position) }
         }
 
+
         init {
 //            Log.d("Log init=>",listMenu.toString())
             itemView.setOnClickListener {
                 Log.d("Log onclick=>", it.tv_nama_menu.text.toString())
             }
-
         }
-
     }
 
 
@@ -59,6 +58,7 @@ class RecyclerAdapter(
             .inflate(R.layout.item_menu, viewGroup, false)
         return ViewHolder(v)
     }
+
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         Log.d("bind=>", i.toString())
@@ -69,7 +69,7 @@ class RecyclerAdapter(
         viewHolder.itemNama.text = listMenu[i].Nama_Menu
         viewHolder.itemDesc.text = listMenu[i].Deskripsi_Menu
         viewHolder.itemHarga.text = listMenu[i].Harga_Menu
-
+        viewHolder.tvCount.text = listMenu[i].Jumlah_Menu.toString()
     }
 
     override fun getItemCount(): Int {

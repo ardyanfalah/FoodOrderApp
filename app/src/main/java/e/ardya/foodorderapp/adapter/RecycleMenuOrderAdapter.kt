@@ -13,11 +13,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.RetrofitClient
 
-class RecycleMenuOrderAdapter(private val context: Context, private val listMenu : ArrayList<MenuModel.Data>, private val listener : Listener) : RecyclerView.Adapter<RecycleMenuOrderAdapter.ViewHolder>() {
+class RecycleMenuOrderAdapter(private val context: Context, private val listOrder : ArrayList<TransaksiModel.ItemTransaksi>, private val listener : Listener) : RecyclerView.Adapter<RecycleMenuOrderAdapter.ViewHolder>() {
     interface Listener {
-        fun onItemClick(menu : MenuModel.Data)
+        fun onItemClick(order :TransaksiModel.ItemTransaksi)
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -25,8 +26,8 @@ class RecycleMenuOrderAdapter(private val context: Context, private val listMenu
         var jumlahPesanan: TextView = itemView.findViewById(R.id.tv_menu_count)
         var itemHarga: TextView = itemView.findViewById(R.id.tv_menu_price_item)
 
-        fun bind(menu: MenuModel.Data, listener: Listener, position:Int){
-            itemView.setOnClickListener{ listener.onItemClick(menu) }
+        fun bind(order: TransaksiModel.ItemTransaksi, listener: Listener, position:Int){
+            itemView.setOnClickListener{ listener.onItemClick(order) }
         }
 
         init {
@@ -43,13 +44,13 @@ class RecycleMenuOrderAdapter(private val context: Context, private val listMenu
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         Log.d("bind=>",i.toString())
-        viewHolder.bind(listMenu[i],listener,i)
-        viewHolder.itemNama.text = listMenu[i].Nama_Menu
-        viewHolder.itemHarga.text = listMenu[i].Harga_Menu
-
+        viewHolder.bind(listOrder[i],listener,i)
+        viewHolder.itemNama.text = listOrder[i].Harga_Menu
+        viewHolder.itemHarga.text = listOrder[i].Nama_Menu
+        viewHolder.jumlahPesanan.text = listOrder[i].Jumlah_Makanan.toString()
     }
 
     override fun getItemCount(): Int {
-        return listMenu.size
+        return listOrder.size
     }
 }

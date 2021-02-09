@@ -10,6 +10,7 @@ object TransaksiModel {
         var Id_Menu: Int?=null,
         var Jumlah_Makanan: Int?=null,
         var Harga_Menu: String?=null,
-        var Tanggal_Trx: String?=null
+        var Tanggal_Trx: String?=null,
+        var Nama_Menu: String?=null
     )
 }

@@ -13,6 +13,7 @@ object MenuModel {
         var Jenis_Menu: String?,
         var Status_Menu: String?,
         var Image_Menu: String?,
-        var Deskripsi_Menu: String?
+        var Deskripsi_Menu: String?,
+        var Jumlah_Menu: Int =0
         )
 }
