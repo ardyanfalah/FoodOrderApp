@@ -56,6 +56,7 @@ class HomeViewModel : BaseVM() {
         val currentDate = SimpleDateFormat("yyyy-MM-dd").format(Date())
         var currentMenu = listOrder.value
         val transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
+        var isExist = false
         transaksiTemp.Id_Trx = 0
         transaksiTemp.Id_Admin = 0
         transaksiTemp.Id_Pelanggan = 2
@@ -64,13 +65,36 @@ class HomeViewModel : BaseVM() {
         transaksiTemp.Jumlah_Makanan = 1
         transaksiTemp.Tanggal_Trx = currentDate
         transaksiTemp.Nama_Menu = menu.Nama_Menu
-        if(listOrder.value?.isEmpty()!! || !listOrder.value?.contains(transaksiTemp)!!){
+        if(!listOrder.value.isNullOrEmpty()){
+            for(it in listOrder.value!!){
+                if(it.Id_Menu==transaksiTemp.Id_Menu){
+                    it.Jumlah_Makanan = it.Jumlah_Makanan?.plus(1)
+                    isExist = true
+                    break
+                }
+            }
+            if(!isExist){
+                listOrder.value?.add(transaksiTemp)
+            }
+            listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.get(position)?.Jumlah_Menu?.plus(
+                1
+            )!!
+        } else {
+            listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.get(position)?.Jumlah_Menu?.plus(
+                1
+            )!!
             listOrder.value?.add(transaksiTemp)
-            listOrder.postValue(listOrder.value)
-        } else if(listOrder.value?.contains(transaksiTemp)!!){
-            listOrder.value?.find { it.Id_Menu == transaksiTemp.Id_Menu }?.Jumlah_Makanan=+3
-            listOrder.postValue(listOrder.value)
         }
+        listOrder.postValue(listOrder.value)
+        listMenu.postValue(listMenu.value)
+
+//        if(listOrder.value?.isEmpty()!! || !listOrder.value?.contains(transaksiTemp)!!){
+//            listOrder.value?.add(transaksiTemp)
+//            listOrder.postValue(listOrder.value)
+//        } else if(listOrder.value?.contains(transaksiTemp)!!){
+//            listOrder.value?.find { it.Id_Menu == transaksiTemp.Id_Menu }?.Jumlah_Makanan=+3
+//            listOrder.postValue(listOrder.value)
+//        }
 
 
 //        listOrder.value = ArrayList()
@@ -79,8 +103,24 @@ class HomeViewModel : BaseVM() {
 //        listOrder.postValue(array)
     }
 
-    fun removeOrder(menu:MenuModel.Data){
+    fun removeOrder(menu:MenuModel.Data,position: Int){
+        if(!listOrder.value.isNullOrEmpty()){
+            for(it in listOrder.value!!){
+                if(it.Id_Menu==menu.Id_Menu && it.Jumlah_Makanan!! > 1){
+                    it.Jumlah_Makanan = it.Jumlah_Makanan?.minus(1)
+                    listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.get(position)?.Jumlah_Menu?.minus(
+                        1
+                    )!!
+                    break
+                } else {
+                    listOrder.value?.filter { it.Id_Menu==menu.Id_Menu }
+                    break
+                }
+            }
+        }
 
+        listOrder.postValue(listOrder.value)
+        listMenu.postValue(listMenu.value)
     }
 
     fun addTotalPrice(price:String){

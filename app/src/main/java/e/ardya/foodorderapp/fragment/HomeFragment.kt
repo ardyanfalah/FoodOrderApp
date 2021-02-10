@@ -17,6 +17,7 @@ import e.ardya.foodorderapp.base.BaseFragment
 import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_menu.*
 
 
 class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
@@ -50,6 +51,8 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 this@HomeFragment.adapter=activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
 //                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
                 adapter = this@HomeFragment.adapter
+                this@HomeFragment.adapter?.notifyDataSetChanged()
+
             }
         })
         homeViewModel.listOrder.observe(viewLifecycleOwner, Observer {
@@ -93,11 +96,25 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
 
     override fun onOrder(menu: MenuModel.Data, position: Int) {
         Log.d("Menu Clicked",menu.toString())
+
         if(!dialog.isVisible){
             this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
             homeViewModel.addOrder(menu,position)
         } else {
             homeViewModel.addOrder(menu,position)
+        }
+
+    }
+
+    override fun onAddOrder(menu: MenuModel.Data, position: Int) {
+    }
+
+    override fun onRemoveOrder(menu: MenuModel.Data, position: Int) {
+        if (homeViewModel.listOrder.value?.size == 1){
+            homeViewModel.removeOrder(menu,position)
+            dialog.dismiss()
+        } else {
+            homeViewModel.removeOrder(menu,position)
         }
     }
 
