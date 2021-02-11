@@ -19,15 +19,20 @@ import e.ardya.foodorderapp.data.net.RetrofitClient
 class RecycleMenuOrderAdapter(private val context: Context, private val listOrder : ArrayList<TransaksiModel.ItemTransaksi>, private val listener : Listener) : RecyclerView.Adapter<RecycleMenuOrderAdapter.ViewHolder>() {
     interface Listener {
         fun onItemClick(order :TransaksiModel.ItemTransaksi)
+        fun onAddOrder(order :TransaksiModel.ItemTransaksi, position: Int)
+        fun onRemoveOrder(order :TransaksiModel.ItemTransaksi,position: Int)
     }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var itemNama: TextView = itemView.findViewById(R.id.tv_menu_name_item)
         var jumlahPesanan: TextView = itemView.findViewById(R.id.tv_menu_count)
         var itemHarga: TextView = itemView.findViewById(R.id.tv_menu_price_item)
-
+        var btnAdd: Button = itemView.findViewById(R.id.btn_add_count)
+        var btnRemove: Button = itemView.findViewById(R.id.btn_remove_count)
         fun bind(order: TransaksiModel.ItemTransaksi, listener: Listener, position:Int){
             itemView.setOnClickListener{ listener.onItemClick(order) }
+            itemView.setOnClickListener{ listener.onAddOrder(order,position) }
+            itemView.setOnClickListener{ listener.onRemoveOrder(order,position) }
         }
 
         init {

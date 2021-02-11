@@ -59,7 +59,7 @@ class RecyclerAdapter(
             btnAdd.setOnClickListener { listener.onOrder(menu, position) }
             btnRemove.setOnClickListener {
                 listener.onRemoveOrder(menu,position)
-                if(menu.Jumlah_Menu <= 0){
+                if(menu.Jumlah_Menu < 1){
                     btnAdd.visibility = View.GONE
                     tvCount.visibility = View.GONE
                     btnRemove.visibility = View.GONE
@@ -99,12 +99,12 @@ class RecyclerAdapter(
         viewHolder.itemDesc.text = listMenu[i].Deskripsi_Menu
         viewHolder.itemHarga.text = listMenu[i].Harga_Menu
         viewHolder.tvCount.text = listMenu[i].Jumlah_Menu.toString()
-        if(listMenu[i].Jumlah_Menu > 0){
+        if(listMenu[i].Jumlah_Menu >= 1){
             viewHolder.btnAdd.visibility = View.VISIBLE
             viewHolder.tvCount.visibility = View.VISIBLE
             viewHolder.btnRemove.visibility = View.VISIBLE
             viewHolder.btnOrder.visibility = View.GONE
-        } else{
+        } else {
             viewHolder.btnAdd.visibility = View.GONE
             viewHolder.tvCount.visibility = View.GONE
             viewHolder.btnRemove.visibility = View.GONE

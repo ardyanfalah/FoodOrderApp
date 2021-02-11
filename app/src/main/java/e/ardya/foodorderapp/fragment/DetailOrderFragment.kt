@@ -76,4 +76,12 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 
     override fun onItemClick(order: TransaksiModel.ItemTransaksi) {
     }
+
+    override fun onAddOrder(order: TransaksiModel.ItemTransaksi, position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onRemoveOrder(order: TransaksiModel.ItemTransaksi, position: Int) {
+        TODO("Not yet implemented")
+    }
 }

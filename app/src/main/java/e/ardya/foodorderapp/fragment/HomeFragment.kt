@@ -1,10 +1,12 @@
 package e.ardya.foodorderapp.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +28,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
-    var dialog:CountOrderDialogFragment = CountOrderDialogFragment()
+    var  dialog:CountOrderDialogFragment = CountOrderDialogFragment()
     var orders:ArrayList<MenuModel.Data> = ArrayList()
     var totalPrice: Int= 0
 
@@ -41,7 +43,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
-        homeViewModel.getMenu()
+        if(homeViewModel.listMenu.value.isNullOrEmpty()){
+            homeViewModel.getMenu()
+        }
         homeViewModel.listMenu.observe(viewLifecycleOwner, Observer {
             recycler_view.apply {
                 // set a LinearLayoutManager to handle Android
@@ -60,13 +64,21 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 val temp = it
                 var priceTotal:Int = 0
                 var tempHarga:Int = 0
+                var totalItem:Int = 0
                 temp.forEach { item ->
                     if(!item.Harga_Menu.isNullOrEmpty()){
                         tempHarga = item.Harga_Menu!!.toInt()*item.Jumlah_Makanan!!
                         priceTotal += tempHarga
                     }
+                    if(item.Jumlah_Makanan != null){
+                        totalItem += item.Jumlah_Makanan!!
+                    }
                 }
                 homeViewModel.addTotalPrice(priceTotal.toString())
+                homeViewModel.addTotalItem(totalItem.toString())
+                if (dialog.dialog == null){
+                    dialog.show(childFragmentManager,CountOrderDialogFragment.TAG)
+                }
             }
         })
 
@@ -84,6 +96,8 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
 //        }
     }
 
+
+
     fun initObserve(){
         homeViewModel.dataLoading.observe(viewLifecycleOwner, Observer {
             if (it) showLoading() else dismissLoading()
@@ -97,8 +111,10 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     override fun onOrder(menu: MenuModel.Data, position: Int) {
         Log.d("Menu Clicked",menu.toString())
 
-        if(!dialog.isVisible){
-            this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
+        if(dialog.dialog == null){
+//            this.fragmentManager?.let { dialog.show(it,CountOrderDialogFragment.TAG) }
+            dialog.show(childFragmentManager,CountOrderDialogFragment.TAG)
+
             homeViewModel.addOrder(menu,position)
         } else {
             homeViewModel.addOrder(menu,position)
@@ -109,13 +125,12 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     override fun onAddOrder(menu: MenuModel.Data, position: Int) {
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onRemoveOrder(menu: MenuModel.Data, position: Int) {
-        if (homeViewModel.listOrder.value?.size == 1){
-            homeViewModel.removeOrder(menu,position)
-            dialog.dismiss()
-        } else {
-            homeViewModel.removeOrder(menu,position)
-        }
+            homeViewModel.removeOrder(menu,position,callback = {
+                dialog.dialog?.dismiss()
+            })
+
     }
 
 }

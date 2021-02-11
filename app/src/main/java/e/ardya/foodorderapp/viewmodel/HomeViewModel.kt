@@ -1,6 +1,9 @@
 package e.ardya.foodorderapp.viewmodel
 
+import android.os.Build
+import android.os.Handler
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +15,7 @@ import e.ardya.foodorderapp.data.net.service.MenuService
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.security.auth.callback.Callback
 import kotlin.collections.ArrayList
 
 class HomeViewModel : BaseVM() {
@@ -24,6 +28,7 @@ class HomeViewModel : BaseVM() {
     var listMenu = MutableLiveData<ArrayList<MenuModel.Data>>()
     var listOrder = MutableLiveData<ArrayList<TransaksiModel.ItemTransaksi>>()
     var totalPrice = MutableLiveData<String>()
+    var totalItem = MutableLiveData<String>()
     init {
         listOrder.value = ArrayList()
     }
@@ -103,7 +108,8 @@ class HomeViewModel : BaseVM() {
 //        listOrder.postValue(array)
     }
 
-    fun removeOrder(menu:MenuModel.Data,position: Int){
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun removeOrder(menu:MenuModel.Data, position: Int, callback: () -> Unit){
         if(!listOrder.value.isNullOrEmpty()){
             for(it in listOrder.value!!){
                 if(it.Id_Menu==menu.Id_Menu && it.Jumlah_Makanan!! > 1){
@@ -113,9 +119,13 @@ class HomeViewModel : BaseVM() {
                     )!!
                     break
                 } else {
-                    listOrder.value?.filter { it.Id_Menu==menu.Id_Menu }
+                    listMenu.value?.get(position)?.Jumlah_Menu = 0
+                    listOrder.value?.removeIf { itemTransaksi -> itemTransaksi.Id_Menu == menu.Id_Menu  }
                     break
                 }
+            }
+            if(listOrder.value?.size == 0){
+                callback.invoke()
             }
         }
 
@@ -123,7 +133,22 @@ class HomeViewModel : BaseVM() {
         listMenu.postValue(listMenu.value)
     }
 
+    fun addOrderDetail(order:TransaksiModel.ItemTransaksi,position: Int){
+
+    }
+
+    fun removeOrderDetail(order: TransaksiModel.ItemTransaksi,position: Int){
+
+    }
+
     fun addTotalPrice(price:String){
         totalPrice.value = "Rp. $price"
+        totalPrice.postValue(totalPrice.value)
+
+    }
+
+    fun addTotalItem(total: String){
+        totalItem.value = total
+        totalItem.postValue(totalItem.value)
     }
 }

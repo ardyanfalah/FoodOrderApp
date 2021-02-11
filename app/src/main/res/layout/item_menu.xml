@@ -8,6 +8,7 @@
     android:foreground="?selectableItemBackground"
     card_view:cardBackgroundColor="@android:color/transparent"
     card_view:cardElevation="0dp"
+    android:clickable="false"
 >
 
     <androidx.constraintlayout.widget.ConstraintLayout
