@@ -48,6 +48,9 @@
                 android:id="@+id/action_action_detailOrderFragment_to_navigation_dashboard2_to_navigation_dashboard"
                 app:destination="@id/navigation_dashboard" />
         </action>
+        <action
+            android:id="@+id/action_detailOrderFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <dialog
         android:id="@+id/countOrderDialogFragment"

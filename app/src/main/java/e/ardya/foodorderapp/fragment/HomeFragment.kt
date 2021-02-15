@@ -46,6 +46,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
         if(homeViewModel.listMenu.value.isNullOrEmpty()){
             homeViewModel.getMenu()
         }
+        if (dialog.dialog == null && homeViewModel.getOrderSize() >0){
+            dialog.show(childFragmentManager,CountOrderDialogFragment.TAG)
+        }
         homeViewModel.listMenu.observe(viewLifecycleOwner, Observer {
             recycler_view.apply {
                 // set a LinearLayoutManager to handle Android
@@ -127,9 +130,9 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onRemoveOrder(menu: MenuModel.Data, position: Int) {
-            homeViewModel.removeOrder(menu,position,callback = {
-                dialog.dialog?.dismiss()
-            })
+        homeViewModel.removeOrder(menu,position,callback = {
+            dialog.dialog?.dismiss()
+        })
 
     }
 

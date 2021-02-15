@@ -133,12 +133,30 @@ class HomeViewModel : BaseVM() {
         listMenu.postValue(listMenu.value)
     }
 
-    fun addOrderDetail(order:TransaksiModel.ItemTransaksi,position: Int){
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun addOrderDetail(order:TransaksiModel.ItemTransaksi, position: Int) {
+        listOrder.value?.get(position)?.Jumlah_Makanan = listOrder.value?.get(position)?.Jumlah_Makanan?.plus(1)
+        listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.find { it.Id_Menu == order.Id_Menu }?.Jumlah_Menu?.plus(1)!!
+
+        listOrder.postValue(listOrder.value)
+        listMenu.postValue(listMenu.value)
 
     }
 
-    fun removeOrderDetail(order: TransaksiModel.ItemTransaksi,position: Int){
-
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun removeOrderDetail(order: TransaksiModel.ItemTransaksi, position: Int,callback: () -> Unit){
+        if(listOrder.value?.get(position)?.Jumlah_Makanan!! >  1){
+            listOrder.value?.get(position)?.Jumlah_Makanan = listOrder.value!![position].Jumlah_Makanan?.minus(1)
+            listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.find { it.Id_Menu == order.Id_Menu }?.Jumlah_Menu?.minus(1)!!
+        } else {
+            listOrder.value?.remove(order )
+            listMenu.value?.find { it.Id_Menu == order.Id_Menu }?.Jumlah_Menu = 0
+        }
+        listOrder.postValue(listOrder.value)
+        listMenu.postValue(listMenu.value)
+        if( listOrder.value != null && listOrder.value?.size!! <1){
+            callback.invoke()
+        }
     }
 
     fun addTotalPrice(price:String){
@@ -150,5 +168,13 @@ class HomeViewModel : BaseVM() {
     fun addTotalItem(total: String){
         totalItem.value = total
         totalItem.postValue(totalItem.value)
+    }
+
+     fun getOrderSize(): Int {
+        return if(!listOrder.value.isNullOrEmpty()){
+            listOrder.value?.size!!
+        } else {
+            0
+        }
     }
 }
