@@ -51,8 +51,8 @@
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="340dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/bg_view_detail_order"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:text="Isikan pemesan (perorangan/instansi)"
             android:textColor="@color/ColorDarkGreen"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="No. Hp (bisa dihubungi)"
             android:textColor="@color/ColorDarkGreen"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:text="Alamat"
             android:textColor="@color/ColorDarkGreen"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -166,6 +166,20 @@
             app:layout_constraintEnd_toEndOf="@+id/v_total_result"
             app:layout_constraintTop_toTopOf="@+id/v_total_result"
             app:srcCompat="@drawable/ic_arrow_forward_green_24" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/bg_btn_login_orange"
+            android:text="Button"
+            android:textColor="@color/color_white"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/et_address_pemesan" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
