@@ -7,13 +7,13 @@ object MenuModel {
         var message: String?
     )
     data class Data(
-        var Id_Menu: Int?,
-        var Nama_Menu: String?,
-        var Harga_Menu: String?,
-        var Jenis_Menu: String?,
-        var Status_Menu: String?,
-        var Image_Menu: String?,
-        var Deskripsi_Menu: String?,
+        var id_menu: Int?,
+        var nama_menu: String?,
+        var harga_menu: String?,
+        var id_ktgr: String?,
+        var status_Menu: String?,
+        var gambar_menu: String?,
+        var deskripsi_menu: String?,
         var Jumlah_Menu: Int =0
         )
 }

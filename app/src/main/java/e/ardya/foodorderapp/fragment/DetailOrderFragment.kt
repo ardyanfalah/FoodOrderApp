@@ -69,12 +69,12 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                     var tempHarga:Int = 0
                     var totalItem:Int = 0
                     temp.forEach { item ->
-                        if(!item.Harga_Menu.isNullOrEmpty()){
-                            tempHarga = item.Harga_Menu!!.toInt()*item.Jumlah_Makanan!!
+                        if(!item.harga_menu.isNullOrEmpty()){
+                            tempHarga = item.harga_menu!!.toInt()*item.jumlah_pesan!!
                             priceTotal += tempHarga
                         }
-                        if(item.Jumlah_Makanan != null){
-                            totalItem += item.Jumlah_Makanan!!
+                        if(item.jumlah_pesan != null){
+                            totalItem += item.jumlah_pesan!!
                         }
                     }
                     homeViewModel.addTotalPrice(priceTotal.toString())

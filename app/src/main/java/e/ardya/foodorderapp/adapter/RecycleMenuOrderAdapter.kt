@@ -49,16 +49,16 @@ class RecycleMenuOrderAdapter(private val context: Context, private val listOrde
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var tempHarga = 0
-        tempHarga = if(listOrder[i].Jumlah_Makanan!=null && listOrder[i].Harga_Menu != null){
-            listOrder[i].Jumlah_Makanan!!.toInt().times(listOrder[i].Harga_Menu!!.toInt())
+        tempHarga = if(listOrder[i].jumlah_pesan!=null && listOrder[i].harga_menu != null){
+            listOrder[i].jumlah_pesan!!.toInt().times(listOrder[i].harga_menu!!.toInt())
         } else {
-            listOrder[i].Harga_Menu!!.toInt()
+            listOrder[i].harga_menu!!.toInt()
         }
         Log.d("bind=>",i.toString())
         viewHolder.bind(listOrder[i],listener,i)
-        viewHolder.itemNama.text = listOrder[i].Nama_Menu
+        viewHolder.itemNama.text = listOrder[i].nama_menu
         viewHolder.itemHarga.text = tempHarga.toString()
-        viewHolder.jumlahPesanan.text = listOrder[i].Jumlah_Makanan.toString()
+        viewHolder.jumlahPesanan.text = listOrder[i].jumlah_pesan.toString()
     }
 
     override fun getItemCount(): Int {

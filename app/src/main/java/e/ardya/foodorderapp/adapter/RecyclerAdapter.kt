@@ -91,13 +91,13 @@ class RecyclerAdapter(
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         Log.d("bind=>", i.toString())
-        Glide.with(context).load(RetrofitClient.getImage() + listMenu.get(i).Image_Menu)
+        Glide.with(context).load(RetrofitClient.getImage() + listMenu.get(i).gambar_menu)
             .apply(RequestOptions().centerCrop())
             .into(viewHolder.itemImage)
         viewHolder.bind(listMenu[i], listener, i)
-        viewHolder.itemNama.text = listMenu[i].Nama_Menu
-        viewHolder.itemDesc.text = listMenu[i].Deskripsi_Menu
-        viewHolder.itemHarga.text = listMenu[i].Harga_Menu
+        viewHolder.itemNama.text = listMenu[i].nama_menu
+        viewHolder.itemDesc.text = listMenu[i].deskripsi_menu
+        viewHolder.itemHarga.text = listMenu[i].harga_menu
         viewHolder.tvCount.text = listMenu[i].Jumlah_Menu.toString()
         if(listMenu[i].Jumlah_Menu >= 1){
             viewHolder.btnAdd.visibility = View.VISIBLE

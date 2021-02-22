@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import java.util.*
 
 interface IMenu {
-    @GET("ProductAPI")
+    @GET("MenuAPI")
     fun getData() : Observable<MenuModel.ResponseType>
 }

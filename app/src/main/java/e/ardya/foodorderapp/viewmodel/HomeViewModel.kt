@@ -62,18 +62,20 @@ class HomeViewModel : BaseVM() {
         var currentMenu = listOrder.value
         val transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
         var isExist = false
-        transaksiTemp.Id_Trx = 0
-        transaksiTemp.Id_Admin = 0
-        transaksiTemp.Id_Pelanggan = 2
-        transaksiTemp.Id_Menu = menu.Id_Menu
-        transaksiTemp.Harga_Menu = menu.Harga_Menu
-        transaksiTemp.Jumlah_Makanan = 1
-        transaksiTemp.Tanggal_Trx = currentDate
-        transaksiTemp.Nama_Menu = menu.Nama_Menu
+        transaksiTemp.id_pmsn = 0
+        transaksiTemp.id_admin = 0
+        transaksiTemp.id_plgn = 2
+        transaksiTemp.id_menu = menu.id_menu
+        transaksiTemp.harga_menu = menu.harga_menu
+        transaksiTemp.jumlah_pesan = 1
+        transaksiTemp.waktu_pmsn = currentDate
+        transaksiTemp.waktu_dtg = null
+        transaksiTemp.waktu_byr = null
+        transaksiTemp.nama_menu = menu.nama_menu
         if(!listOrder.value.isNullOrEmpty()){
             for(it in listOrder.value!!){
-                if(it.Id_Menu==transaksiTemp.Id_Menu){
-                    it.Jumlah_Makanan = it.Jumlah_Makanan?.plus(1)
+                if(it.id_menu==transaksiTemp.id_menu){
+                    it.jumlah_pesan = it.jumlah_pesan?.plus(1)
                     isExist = true
                     break
                 }
@@ -112,15 +114,15 @@ class HomeViewModel : BaseVM() {
     fun removeOrder(menu:MenuModel.Data, position: Int, callback: () -> Unit){
         if(!listOrder.value.isNullOrEmpty()){
             for(it in listOrder.value!!){
-                if(it.Id_Menu==menu.Id_Menu && it.Jumlah_Makanan!! > 1){
-                    it.Jumlah_Makanan = it.Jumlah_Makanan?.minus(1)
+                if(it.id_menu==menu.id_menu && it.jumlah_pesan!! > 1){
+                    it.jumlah_pesan = it.jumlah_pesan?.minus(1)
                     listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.get(position)?.Jumlah_Menu?.minus(
                         1
                     )!!
                     break
                 } else {
                     listMenu.value?.get(position)?.Jumlah_Menu = 0
-                    listOrder.value?.removeIf { itemTransaksi -> itemTransaksi.Id_Menu == menu.Id_Menu  }
+                    listOrder.value?.removeIf { itemTransaksi -> itemTransaksi.id_menu == menu.id_menu  }
                     break
                 }
             }
@@ -135,8 +137,8 @@ class HomeViewModel : BaseVM() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun addOrderDetail(order:TransaksiModel.ItemTransaksi, position: Int) {
-        listOrder.value?.get(position)?.Jumlah_Makanan = listOrder.value?.get(position)?.Jumlah_Makanan?.plus(1)
-        listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.find { it.Id_Menu == order.Id_Menu }?.Jumlah_Menu?.plus(1)!!
+        listOrder.value?.get(position)?.jumlah_pesan = listOrder.value?.get(position)?.jumlah_pesan?.plus(1)
+        listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.find { it.id_menu == order.id_menu }?.Jumlah_Menu?.plus(1)!!
 
         listOrder.postValue(listOrder.value)
         listMenu.postValue(listMenu.value)
@@ -145,12 +147,12 @@ class HomeViewModel : BaseVM() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun removeOrderDetail(order: TransaksiModel.ItemTransaksi, position: Int,callback: () -> Unit){
-        if(listOrder.value?.get(position)?.Jumlah_Makanan!! >  1){
-            listOrder.value?.get(position)?.Jumlah_Makanan = listOrder.value!![position].Jumlah_Makanan?.minus(1)
-            listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.find { it.Id_Menu == order.Id_Menu }?.Jumlah_Menu?.minus(1)!!
+        if(listOrder.value?.get(position)?.jumlah_pesan!! >  1){
+            listOrder.value?.get(position)?.jumlah_pesan = listOrder.value!![position].jumlah_pesan?.minus(1)
+            listMenu.value?.get(position)?.Jumlah_Menu = listMenu.value?.find { it.id_menu == order.id_menu }?.Jumlah_Menu?.minus(1)!!
         } else {
             listOrder.value?.remove(order )
-            listMenu.value?.find { it.Id_Menu == order.Id_Menu }?.Jumlah_Menu = 0
+            listMenu.value?.find { it.id_menu == order.id_menu }?.Jumlah_Menu = 0
         }
         listOrder.postValue(listOrder.value)
         listMenu.postValue(listMenu.value)
