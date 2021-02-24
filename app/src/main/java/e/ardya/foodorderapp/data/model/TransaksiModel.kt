@@ -18,4 +18,21 @@ object TransaksiModel {
         var harga_menu: String?=null,
         var nama_menu: String?=null
     )
+    data class headerPemesanan(
+        val id_pmsn : Int,
+        val id_admin : Int,
+        val id_plgn : Int,
+        val id_tmpt : String,
+        val waktu_pmsn : String,
+        val waktu_dtg : String,
+        val waktu_byr : String,
+        val status_pemesanan : String,
+        val total_harga : Int
+    )
+    data class detailPemesanan(
+        val id_detail_pemesanan : Int,
+        val id_pmsn : Int,
+        val id_menu : Int,
+        val jumlah_pesan : Int
+    )
 }
