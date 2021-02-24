@@ -52,9 +52,30 @@ class HomeViewModel : BaseVM() {
     }
 
     fun sendOrder(){
-        val jsonTemp: String? = Gson().toJson(listOrder.value)
-        Log.d("test json=>",jsonTemp.toString())
-
+        var jsonArray = JSONArray()
+        var orderDetail= ArrayList<TransaksiModel.DetailPemesanan>()
+        var orderHeader = TransaksiModel.HeaderPemesanan(
+            id_pmsn = 0,
+            id_admin = 1,
+            id_plgn = 1,
+            id_tmpt = null,
+            waktu_pmsn= listOrder.value!![0].waktu_pmsn!!,
+            waktu_dtg = null,
+            waktu_byr = null,
+            status_pemesanan = "Menunggu_Verifikasi",
+            total_harga = listOrder.value!![0].total_harga!!
+        )
+        listOrder.value!!.forEach { order->
+            var temp=TransaksiModel.DetailPemesanan(
+                id_detail_pemesanan = 0,
+                id_pmsn = 0,
+                id_menu = order.id_menu!!,
+                jumlah_pesan = order.jumlah_pesan!!
+            )
+            orderDetail.add(temp)
+        }
+        jsonArray.put(orderDetail)
+        jsonArray.put(orderHeader)
     }
 
     fun addOrder(menu:MenuModel.Data,position:Int){
