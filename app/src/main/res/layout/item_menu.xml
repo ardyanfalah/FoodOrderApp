@@ -5,41 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_marginTop="12dp"
+    android:clickable="false"
     android:foreground="?selectableItemBackground"
     card_view:cardBackgroundColor="@android:color/transparent"
-    card_view:cardElevation="0dp"
-    android:clickable="false"
->
+    card_view:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:padding="8dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_image_menu"
-            card_view:shapeAppearanceOverlay="@style/roundedCornersImageView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:background="@drawable/bg_iv_round"
+            android:scaleType="fitStart"
             android:src="@drawable/img_ayam_thumbnail"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="@id/guideline2"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"/>
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_image_menu"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:background="@drawable/bg_iv_round"-->
-<!--            android:src="@drawable/img_ayam_thumbnail"-->
-<!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
-<!--            card_view:layout_constraintEnd_toEndOf="@id/guideline2"-->
-<!--            card_view:layout_constraintStart_toStartOf="parent"-->
-<!--            card_view:layout_constraintTop_toTopOf="parent" />-->
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:shapeAppearanceOverlay="@style/roundedCornersImageView" />
+        <!--        <ImageView-->
+        <!--            android:id="@+id/iv_image_menu"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:scaleType="centerCrop"-->
+        <!--            android:background="@drawable/bg_iv_round"-->
+        <!--            android:src="@drawable/img_ayam_thumbnail"-->
+        <!--            card_view:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            card_view:layout_constraintEnd_toEndOf="@id/guideline2"-->
+        <!--            card_view:layout_constraintStart_toStartOf="parent"-->
+        <!--            card_view:layout_constraintTop_toTopOf="parent" />-->
 
         <TextView
             android:id="@+id/tv_nama_menu"
@@ -155,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            card_view:layout_constraintGuide_percent="0.4" />
+            card_view:layout_constraintGuide_begin="165dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"

@@ -158,10 +158,10 @@
 
     <TextView
         android:id="@+id/textView32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:text="<- Saung 2"
+        android:text="Saung 2"
         app:layout_constraintBottom_toTopOf="@+id/view8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
