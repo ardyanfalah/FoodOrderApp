@@ -17,12 +17,12 @@ import kotlin.random.Random.Default.Companion
 
 object PemesananService {
     fun sendOrder(
-        orders:JsonArray,
+        orders:String,
         onSuccess: (String?) -> Unit,
         onError: (String?) -> Unit
     ){
-        var body = ""
-        body=Gson().toJson(orders)
+        var body =""
+        body = Gson().toJson(orders)
         val requestBody: RequestBody =
             RequestBody.create(MediaType.parse("application/json; charset=utf-8"), body)
         RetrofitClient.getInstance()

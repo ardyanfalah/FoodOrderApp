@@ -9,6 +9,12 @@ object TransaksiModel {
         var data: String?,
         var message: String?
     )
+
+    data class RequestPemesanan(
+        var headerPemesanan: HeaderPemesanan,
+        var detailPemesanan: ArrayList<DetailPemesanan>
+    )
+
     data class ItemTransaksi(
         var id_pmsn: Int?=null,
         var id_admin: Int?=null,

@@ -2,6 +2,7 @@ package e.ardya.foodorderapp.fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,6 +99,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 
         }
         view.v_total_result.setOnClickListener{
+            Log.d("test=>","masuk")
             homeViewModel.sendOrder()
         }
 //        view.btn_add_count.setOnClickListener {

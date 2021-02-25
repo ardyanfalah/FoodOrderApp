@@ -8,10 +8,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 import e.ardya.foodorderapp.base.BaseVM
 import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.MenuService
+import e.ardya.foodorderapp.data.net.service.PemesananService
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,7 +55,6 @@ class HomeViewModel : BaseVM() {
     }
 
     fun sendOrder(){
-        var jsonArray = JSONArray()
         var orderDetail= ArrayList<TransaksiModel.DetailPemesanan>()
         var orderHeader = TransaksiModel.HeaderPemesanan(
             id_pmsn = 0,
@@ -63,7 +65,7 @@ class HomeViewModel : BaseVM() {
             waktu_dtg = null,
             waktu_byr = null,
             status_pemesanan = "Menunggu_Verifikasi",
-            total_harga = listOrder.value!![0].total_harga!!
+            total_harga = totalPrice.value!!.substring(4).toInt()
         )
         listOrder.value!!.forEach { order->
             var temp=TransaksiModel.DetailPemesanan(
@@ -74,8 +76,29 @@ class HomeViewModel : BaseVM() {
             )
             orderDetail.add(temp)
         }
-        jsonArray.put(orderDetail)
-        jsonArray.put(orderHeader)
+
+        val request = TransaksiModel.RequestPemesanan(
+           orderHeader, orderDetail
+        )
+        var list = listOf(orderHeader,orderDetail)
+        val json = Gson().toJson(list)
+        Log.d("text=>",json)
+        dataLoading.postValue(true)
+
+        PemesananService.sendOrder(
+            json,
+            {
+                dataLoading.postValue(false)
+
+
+                Log.d("menu success=>",it.toString())
+            },
+            {
+                dataLoading.postValue(false)
+
+                Log.d("menu fail=>",it.toString())
+            }
+        )
     }
 
     fun addOrder(menu:MenuModel.Data,position:Int){
