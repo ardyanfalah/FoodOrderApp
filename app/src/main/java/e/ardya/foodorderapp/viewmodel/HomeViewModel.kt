@@ -54,7 +54,7 @@ class HomeViewModel : BaseVM() {
         )
     }
 
-    fun sendOrder(){
+    fun sendOrder(callbackSuccess: () -> Unit, callbackFailed: () -> Unit){
         var orderDetail= ArrayList<TransaksiModel.DetailPemesanan>()
         var orderHeader = TransaksiModel.HeaderPemesanan(
             id_pmsn = 0,
@@ -77,9 +77,7 @@ class HomeViewModel : BaseVM() {
             orderDetail.add(temp)
         }
 
-        val request = TransaksiModel.RequestPemesanan(
-           orderHeader, orderDetail
-        )
+
         var list = listOf(orderHeader,orderDetail)
         val json = Gson().toJson(list)
         Log.d("text=>",json)
@@ -90,12 +88,12 @@ class HomeViewModel : BaseVM() {
             {
                 dataLoading.postValue(false)
 
-
+                callbackSuccess.invoke()
                 Log.d("menu success=>",it.toString())
             },
             {
                 dataLoading.postValue(false)
-
+                callbackFailed.invoke()
                 Log.d("menu fail=>",it.toString())
             }
         )

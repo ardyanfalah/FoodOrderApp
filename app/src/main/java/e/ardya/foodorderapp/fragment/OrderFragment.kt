@@ -1,33 +1,70 @@
 package e.ardya.foodorderapp.fragment
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import e.ardya.foodorderapp.R
+import e.ardya.foodorderapp.adapter.RecycleOrderAdapter
+import e.ardya.foodorderapp.base.BaseFragment
+import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.viewmodel.OrderViewModel
+import kotlinx.android.synthetic.main.fragment_order.*
 
-class OrderFragment : Fragment() {
+class OrderFragment : BaseFragment(), RecycleOrderAdapter.Listener  {
 
     private lateinit var orderViewModel: OrderViewModel
-
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var horizontalLayoutManager: RecyclerView.LayoutManager?=null
+    private var adapter: RecyclerView.Adapter<RecycleOrderAdapter.ViewHolder>? = null
+    
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        orderViewModel =
-                ViewModelProviders.of(this).get(OrderViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_order, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        orderViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        orderViewModel = ViewModelProvider(requireActivity()).get(OrderViewModel::class.java)
+        return inflater.inflate(R.layout.fragment_order, container, false)
+    }
+
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(itemView, savedInstanceState)
+        initObserve()
+        orderViewModel.getOrder()
+        orderViewModel.listOrder.observe(viewLifecycleOwner, Observer {
+            recycler_view_personal_order.apply {
+                // set a LinearLayoutManager to handle Android
+                // RecyclerView behavior
+                layoutManager = LinearLayoutManager(activity)
+                // set the custom adapter to the RecyclerView
+                this@OrderFragment.adapter=activity?.baseContext?.let { it1 -> RecycleOrderAdapter(it1,it,this@OrderFragment) }
+//                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@OrderFragment) }
+                adapter = this@OrderFragment.adapter
+                this@OrderFragment.adapter?.notifyDataSetChanged()
+
+            }
         })
-        return root
+
+    }
+
+
+
+    fun initObserve(){
+        orderViewModel.dataLoading.observe(viewLifecycleOwner, Observer {
+            if (it) showLoading() else dismissLoading()
+        })
+    }
+
+
+
+    override fun onItemClick(order: TransaksiModel.HeaderPemesanan) {
+        Log.d("order","masuk")
     }
 }

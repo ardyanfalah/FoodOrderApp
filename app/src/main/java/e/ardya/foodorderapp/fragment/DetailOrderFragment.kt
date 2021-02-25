@@ -99,8 +99,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 
         }
         view.v_total_result.setOnClickListener{
-            Log.d("test=>","masuk")
-            homeViewModel.sendOrder()
+            NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_paymentFragment)
         }
 //        view.btn_add_count.setOnClickListener {
 //            // TODO: Do some task here

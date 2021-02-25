@@ -7,12 +7,19 @@ object TransaksiModel {
     data class ResponseType(
         var success: Boolean = false,
         var data: String?,
-        var message: String?
+        var messages: String?
     )
 
-    data class RequestPemesanan(
-        var headerPemesanan: HeaderPemesanan,
-        var detailPemesanan: ArrayList<DetailPemesanan>
+    data class ResponsePemesanan(
+        var success: Boolean = false,
+        var data: ArrayList<HeaderPemesanan>?,
+        var messages: String?
+    )
+
+    data class ResponsePemesananDetail(
+        var success: Boolean = false,
+        var data: ArrayList<DetailMenuPemesanan>?,
+        var messages: String?
     )
 
     data class ItemTransaksi(
@@ -49,4 +56,15 @@ object TransaksiModel {
         val id_menu : Int,
         val jumlah_pesan : Int
     )
+
+    data class  DetailMenuPemesanan(
+        val id_detail_pemesanan: Int,
+        val id_pmsn: Int?,
+        val id_menu: Int?,
+        val jumlah_pesan: Int,
+        val rating_status: Int,
+        val nama_menu: String,
+        val harga_menu: String
+    )
+
 }

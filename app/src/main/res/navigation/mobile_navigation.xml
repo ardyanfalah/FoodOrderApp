@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_detailOrderFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_detailOrderFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
     <dialog
         android:id="@+id/countOrderDialogFragment"
@@ -59,7 +62,21 @@
         <action
             android:id="@+id/action_countOrderDialogFragment_to_detailOrderFragment"
             app:destination="@id/detailOrderFragment" />
+        <action
+            android:id="@+id/action_countOrderDialogFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="e.ardya.foodorderapp.fragment.PaymentFragment"
+        android:label="PaymentFragment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_paymentFragment_to_detailOrderFragment"
+            app:destination="@id/detailOrderFragment" />
+    </fragment>
 
 
 </navigation>
