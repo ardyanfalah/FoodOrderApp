@@ -14,6 +14,8 @@ object MenuModel {
         var status_Menu: String?,
         var gambar_menu: String?,
         var deskripsi_menu: String?,
-        var Jumlah_Menu: Int =0
+        var Jumlah_Menu: Int =0,
+        var rating:Float?=0.0f
         )
+
 }

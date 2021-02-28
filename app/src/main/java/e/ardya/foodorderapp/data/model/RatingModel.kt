@@ -15,10 +15,10 @@ object RatingModel {
 
     data class Rating(
         val id_rating: Int,
-        val idPlgn: Int?,
-        val idMenu: Int,
+        val id_plgn: Int?,
+        val id_menu: Int,
         val nilai: Long,
         val catatan: String,
-        val waktuRekam: String
+        val waktu_rekam: String
     )
 }

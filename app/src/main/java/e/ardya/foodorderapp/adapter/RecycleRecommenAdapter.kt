@@ -1,51 +1,37 @@
 package e.ardya.foodorderapp.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import e.ardya.foodorderapp.R
+import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.net.RetrofitClient
 
-class RecycleRecommenAdapter : RecyclerView.Adapter<RecycleRecommenAdapter.ViewHolder>() {
+class RecycleRecommenAdapter(
+    private val context: Context,
+    private val listMenu: ArrayList<MenuModel.Data>,
+    private val listener: RecycleRecommenAdapter.Listener
+) : RecyclerView.Adapter<RecycleRecommenAdapter.ViewHolder>() {
+    interface Listener {
+        fun onItemClick(menu: MenuModel.Data)
+    }
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-//        var itemKode: TextView
-//        var itemKategori: TextView
-//        var itemIsi: TextView
+        var itemImageRecommend:ImageView = itemView.findViewById(R.id.iv_image_menu)
+        var itemNamaMenu:TextView = itemView.findViewById(R.id.tv_menu_name_item)
+        var itemHargaMenu:TextView = itemView.findViewById(R.id.tv_harga_menu)
+        var itemRatingMenu:TextView = itemView.findViewById(R.id.tv_rating_number)
 
-        init {
-//            itemKode = itemView.findViewById(R.id.kodePertanyaan)
-//            itemKategori = itemView.findViewById(R.id.kategori)
-//            itemIsi = itemView.findViewById(R.id.isiPertanyaan)
-
-//            itemView.setOnClickListener {
-//                var position: Int = getAdapterPosition()
-//                val context = itemView.context
-//                val intent = Intent(context, DetailPertanyaan::class.java).apply {
-//                    putExtra("NUMBER", position)
-//                    putExtra("CODE", itemKode.text)
-//                    putExtra("CATEGORY", itemKategori.text)
-//                    putExtra("CONTENT", itemIsi.text)
-//                }
-//                context.startActivity(intent)
-//            }
+        fun bind(menu: MenuModel.Data, listener: RecycleRecommenAdapter.Listener, position: Int) {
+            itemView.setOnClickListener { listener.onItemClick(menu) }
         }
     }
-    private val kode = arrayOf("d116df5",
-        "36ffc75", "f5cfe78", "5b87628",
-        "db8d14e", "9913dc4", "e120f96",
-        "466251b")
-
-    private val kategori = arrayOf("Kekayaan", "Teknologi",
-        "Keluarga", "Bisnis",
-        "Keluarga", "Hutang",
-        "Teknologi", "Pidana")
-
-    private val isi = arrayOf("pertanyaan 9",
-        "pertanyaan 11", "pertanyaan 17", "test forum",
-        "pertanyaan 12", "pertanyaan 18", "pertanyaan 20",
-        "pertanyaan 21")
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_menu_recommend, viewGroup, false)
@@ -54,13 +40,17 @@ class RecycleRecommenAdapter : RecyclerView.Adapter<RecycleRecommenAdapter.ViewH
 
 
     override fun getItemCount(): Int {
-        return kode.size
+        return listMenu.size
     }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //        viewHolder.itemKode.text = kode[i]
-//        viewHolder.itemKategori.text = kategori[i]
-//        viewHolder.itemIsi.text = isi[i]
+        holder.bind(listMenu[position], listener, position)
+        Glide.with(context).load(RetrofitClient.getImage() + listMenu.get(position).gambar_menu)
+            .apply(RequestOptions().centerCrop())
+            .into(holder.itemImageRecommend)
+        holder.itemHargaMenu.text = listMenu[position].harga_menu
+        holder.itemNamaMenu.text = listMenu[position].nama_menu
+        holder.itemRatingMenu.text = listMenu[position].rating.toString()
     }
 }

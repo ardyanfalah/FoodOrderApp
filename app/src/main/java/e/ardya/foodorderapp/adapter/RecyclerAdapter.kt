@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -39,6 +40,7 @@ class RecyclerAdapter(
         var btnAdd: Button = itemView.findViewById(R.id.btn_add_count)
         var btnRemove: Button = itemView.findViewById(R.id.btn_remove_count)
         var tvCount: TextView = itemView.findViewById(R.id.tv_menu_count)
+        var itemRating: RatingBar = itemView.findViewById(R.id.ratingBar1)
 
         fun bind(menu: MenuModel.Data, listener: Listener, position: Int) {
             itemView.setOnClickListener { listener.onItemClick(menu) }
@@ -99,6 +101,7 @@ class RecyclerAdapter(
         viewHolder.itemDesc.text = listMenu[i].deskripsi_menu
         viewHolder.itemHarga.text = listMenu[i].harga_menu
         viewHolder.tvCount.text = listMenu[i].Jumlah_Menu.toString()
+        viewHolder.itemRating.rating = if(listMenu[i].rating != null) listMenu[i].rating!!.toFloat() else 0.0f
         if(listMenu[i].Jumlah_Menu >= 1){
             viewHolder.btnAdd.visibility = View.VISIBLE
             viewHolder.tvCount.visibility = View.VISIBLE

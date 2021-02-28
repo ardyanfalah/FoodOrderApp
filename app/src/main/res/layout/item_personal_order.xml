@@ -9,9 +9,7 @@
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     card_view:cardBackgroundColor="@android:color/transparent"
-    card_view:cardElevation="0dp"
-    android:clickable="true"
-    android:focusable="true">
+    card_view:cardElevation="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,7 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Menu"
+            android:text="Menu 2"
+
+            android:textColor="#000000"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/guideline" />
 
@@ -45,7 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Menu"
+            android:text="Menu 2"
+            android:textColor="#000000"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_menu_1" />
 
@@ -53,6 +54,7 @@
             android:id="@+id/tv_datetime_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Dipesan pada"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent" />
@@ -81,6 +83,7 @@
             android:text="x0"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_count_menu_1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

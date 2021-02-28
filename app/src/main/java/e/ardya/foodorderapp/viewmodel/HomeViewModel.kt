@@ -15,6 +15,7 @@ import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.MenuService
 import e.ardya.foodorderapp.data.net.service.PemesananService
+import e.ardya.foodorderapp.data.net.service.RatingService
 import org.json.JSONArray
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,6 +31,7 @@ class HomeViewModel : BaseVM() {
     var mMenuModel: ArrayList<MenuModel.Data>? = ArrayList()
     var listMenu = MutableLiveData<ArrayList<MenuModel.Data>>()
     var listOrder = MutableLiveData<ArrayList<TransaksiModel.ItemTransaksi>>()
+    var listMenuRekomendasi = MutableLiveData<ArrayList<MenuModel.Data>>()
     var totalPrice = MutableLiveData<String>()
     var totalItem = MutableLiveData<String>()
     init {
@@ -44,6 +46,24 @@ class HomeViewModel : BaseVM() {
 
                 mMenuModel = it
                 listMenu.postValue(it)
+                Log.d("menu success=>",it.toString())
+            },
+            {
+                dataLoading.postValue(false)
+
+                Log.d("menu fail=>",it.toString())
+            }
+        )
+    }
+
+    fun getMenuRekomendasi(){
+        dataLoading.postValue(true)
+
+        RatingService.getRatingRekomendasi(
+            {
+                dataLoading.postValue(false)
+
+                listMenuRekomendasi.postValue(it)
                 Log.d("menu success=>",it.toString())
             },
             {

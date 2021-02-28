@@ -87,6 +87,7 @@
             android:numStars="5"
             android:rating="2.5"
             android:stepSize="0.5"
+            android:isIndicator="true"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@id/guideline3"
             card_view:layout_constraintStart_toEndOf="@+id/guideline2"

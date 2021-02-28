@@ -22,12 +22,13 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_menu.*
 
 
-class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
+class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdapter.Listener {
 
     private lateinit var homeViewModel: HomeViewModel
     private var layoutManager: RecyclerView.LayoutManager? = null
     private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    private var adapterRekomendasi: RecyclerView.Adapter<RecycleRecommenAdapter.ViewHolder>? = null
     var  dialog:CountOrderDialogFragment = CountOrderDialogFragment()
     var orders:ArrayList<MenuModel.Data> = ArrayList()
     var totalPrice: Int= 0
@@ -43,6 +44,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
+        homeViewModel.getMenuRekomendasi()
         if(homeViewModel.listMenu.value.isNullOrEmpty()){
             homeViewModel.getMenu()
         }
@@ -84,12 +86,24 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener {
                 }
             }
         })
+        homeViewModel.listMenuRekomendasi.observe(viewLifecycleOwner, Observer {
+            recycler_view_recommend.apply {
+                // set a LinearLayoutManager to handle Android
+                // RecyclerView behavior
+                layoutManager = LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL, false)
+                // set the custom adapter to the RecyclerView
+                this@HomeFragment.adapterRekomendasi=activity?.baseContext?.let { it1 -> RecycleRecommenAdapter(it1,it,this@HomeFragment) }
+//                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@HomeFragment) }
+                adapter = this@HomeFragment.adapterRekomendasi
+                this@HomeFragment.adapterRekomendasi?.notifyDataSetChanged()
 
-        recycler_view_recommend.apply {
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
-            // set the custom adapter to the RecyclerView
-            adapter = RecycleRecommenAdapter()
-        }
+            }
+        })
+//        recycler_view_recommend.apply {
+//            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
+//            // set the custom adapter to the RecyclerView
+//            adapter = RecycleRecommenAdapter()
+//        }
 //        recycler_view.apply {
 //            // set a LinearLayoutManager to handle Android
 //            // RecyclerView behavior

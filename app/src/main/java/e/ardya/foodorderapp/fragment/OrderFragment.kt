@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import e.ardya.foodorderapp.R
@@ -47,7 +48,6 @@ class OrderFragment : BaseFragment(), RecycleOrderAdapter.Listener  {
                 this@OrderFragment.adapter=activity?.baseContext?.let { it1 -> RecycleOrderAdapter(it1,it,this@OrderFragment) }
 //                adapter = activity?.baseContext?.let { it1 -> RecyclerAdapter(it1,it,this@OrderFragment) }
                 adapter = this@OrderFragment.adapter
-                this@OrderFragment.adapter?.notifyDataSetChanged()
 
             }
         })
@@ -64,7 +64,9 @@ class OrderFragment : BaseFragment(), RecycleOrderAdapter.Listener  {
 
 
 
-    override fun onItemClick(order: TransaksiModel.HeaderPemesanan) {
-        Log.d("order","masuk")
+    override fun onItemClick(menu: TransaksiModel.PemesananWithDetail) {
+        orderViewModel.listMenu.value = menu.menu
+        orderViewModel.listMenu.postValue(orderViewModel.listMenu.value)
+        NavHostFragment.findNavController(this).navigate(R.id.action_navigation_dashboard_to_ratingFragment)
     }
 }

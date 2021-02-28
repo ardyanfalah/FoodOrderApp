@@ -12,7 +12,7 @@ object TransaksiModel {
 
     data class ResponsePemesanan(
         var success: Boolean = false,
-        var data: ArrayList<HeaderPemesanan>?,
+        var data: ArrayList<PemesananWithDetail>?,
         var messages: String?
     )
 
@@ -58,13 +58,33 @@ object TransaksiModel {
     )
 
     data class  DetailMenuPemesanan(
+
         val id_detail_pemesanan: Int,
         val id_pmsn: Int?,
         val id_menu: Int?,
         val jumlah_pesan: Int,
-        val rating_status: Int,
+        val rating_status: String,
         val nama_menu: String,
-        val harga_menu: String
+        val harga_menu: String,
+        val jumlah_harga_pesan: String,
+        var gambar_menu: String,
+        var rating:Int?,
+        var catatan:String?
+        )
+
+    data class PemesananWithDetail(
+        val id_admin: String,
+        val id_plgn: String,
+        val id_pmsn: String,
+        val id_tmpt: Any,
+        val menu: ArrayList<DetailMenuPemesanan>,
+        val nama_admin: String,
+        val nama_plgn: String,
+        val status_pemesanan: String,
+        val total_harga: String,
+        val waktu_byr: Any,
+        val waktu_dtg: Any,
+        val waktu_pmsn: String
     )
 
 }

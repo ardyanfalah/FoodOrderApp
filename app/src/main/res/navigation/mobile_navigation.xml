@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_navigation_dashboard_to_detailOrderFragment"
             app:destination="@id/detailOrderFragment" />
+        <action
+            android:id="@+id/action_navigation_dashboard_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
     </fragment>
 
     <fragment
@@ -76,6 +79,14 @@
         <action
             android:id="@+id/action_paymentFragment_to_detailOrderFragment"
             app:destination="@id/detailOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="e.ardya.foodorderapp.fragment.RatingFragment"
+        android:label="RatingFragment" >
+        <action
+            android:id="@+id/action_ratingFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
 
 
