@@ -1,25 +1,21 @@
 package e.ardya.foodorderapp.viewmodel
 
+import android.annotation.SuppressLint
 import android.os.Build
-import android.os.Handler
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
 import e.ardya.foodorderapp.base.BaseVM
 import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.MenuService
 import e.ardya.foodorderapp.data.net.service.PemesananService
 import e.ardya.foodorderapp.data.net.service.RatingService
-import org.json.JSONArray
+import e.ardya.foodorderapp.utils.helper.SessionHelper
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.security.auth.callback.Callback
 import kotlin.collections.ArrayList
 
 class HomeViewModel : BaseVM() {
@@ -75,8 +71,8 @@ class HomeViewModel : BaseVM() {
     }
 
     fun sendOrder(callbackSuccess: () -> Unit, callbackFailed: () -> Unit){
-        var orderDetail= ArrayList<TransaksiModel.DetailPemesanan>()
-        var orderHeader = TransaksiModel.HeaderPemesanan(
+        val orderDetail= ArrayList<TransaksiModel.DetailPemesanan>()
+        val orderHeader = TransaksiModel.HeaderPemesanan(
             id_pmsn = 0,
             id_admin = 1,
             id_plgn = 1,
@@ -88,7 +84,7 @@ class HomeViewModel : BaseVM() {
             total_harga = totalPrice.value!!.substring(4).toInt()
         )
         listOrder.value!!.forEach { order->
-            var temp=TransaksiModel.DetailPemesanan(
+            val temp=TransaksiModel.DetailPemesanan(
                 id_detail_pemesanan = 0,
                 id_pmsn = 0,
                 id_menu = order.id_menu!!,
@@ -98,7 +94,7 @@ class HomeViewModel : BaseVM() {
         }
 
 
-        var list = listOf(orderHeader,orderDetail)
+        val list = listOf(orderHeader,orderDetail)
         val json = Gson().toJson(list)
         Log.d("text=>",json)
         dataLoading.postValue(true)
@@ -119,14 +115,15 @@ class HomeViewModel : BaseVM() {
         )
     }
 
-    fun addOrder(menu:MenuModel.Data,position:Int){
+    @SuppressLint("SimpleDateFormat")
+    fun addOrder(menu:MenuModel.Data, position:Int){
         val currentDate = SimpleDateFormat("yyyy-MM-dd").format(Date())
         var currentMenu = listOrder.value
         val transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
         var isExist = false
         transaksiTemp.id_pmsn = 0
         transaksiTemp.id_admin = 0
-        transaksiTemp.id_plgn = 2
+        transaksiTemp.id_plgn = SessionHelper["id",null]
         transaksiTemp.id_menu = menu.id_menu
         transaksiTemp.harga_menu = menu.harga_menu
         transaksiTemp.jumlah_pesan = 1

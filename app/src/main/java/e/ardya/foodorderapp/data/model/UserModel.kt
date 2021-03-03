@@ -14,13 +14,13 @@ object UserModel {
     )
 
     data class User(
-        val alamat: String,
-        val email: String,
-        val id_plgn: Int,
-        val nama_plgn: String,
-        val no_hp: String,
-        val password: String,
-        val status: String
+        val alamat: String?=null,
+        val email: String?=null,
+        val id_plgn: Int?=null,
+        val nama_plgn: String?=null,
+        val no_hp: String?=null,
+        val password: String?=null,
+        val status: String?=null
     )
 
     data class Login(

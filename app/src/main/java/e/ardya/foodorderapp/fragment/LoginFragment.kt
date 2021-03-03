@@ -5,29 +5,65 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.activity.MainActivity
-import e.ardya.foodorderapp.activity.RegistrationActivity
-import kotlinx.android.synthetic.main.fragment_register.view.*
+import e.ardya.foodorderapp.base.BaseFragment
+import e.ardya.foodorderapp.databinding.FragmentLoginBinding
+import e.ardya.foodorderapp.viewmodel.LoginViewModel
+import kotlinx.android.synthetic.main.fragment_register.view.btnRegis
 
-class LoginFragment: Fragment() {
+class LoginFragment : BaseFragment() {
+
+    lateinit var viewModel: LoginViewModel
+    private lateinit var binding: FragmentLoginBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_login, container, false)
-        root.btnLogin.setOnClickListener {
-            val registrationActivity = RegistrationActivity()
-            var intent = Intent (activity, MainActivity::class.java)
-            startActivity(intent)
-        }
-        root.btnRegis.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_login_to_navigation_register2)
+        binding = DataBindingUtil.inflate(
+            LayoutInflater.from(context),
+            R.layout.fragment_login,
+            container,
+            false
+        )
+        viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
 
-        }
-        return root
     }
+
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(itemView, savedInstanceState)
+        initObserve()
+        setupClickListeners(itemView)
+
+    }
+
+    private fun initObserve() {
+        viewModel.dataLoading.observe(viewLifecycleOwner, Observer {
+            if (it) showLoading() else dismissLoading()
+        })
+        viewModel.toastMessage.observe(viewLifecycleOwner, Observer {
+            showMessage("Info", it ?: "")
+        })
+        viewModel.actionGoToHome.observe(viewLifecycleOwner, Observer {
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+        })
+    }
+
+    private fun setupClickListeners(view: View) {
+        view.btnRegis.setOnClickListener {
+            NavHostFragment.findNavController(this)
+                .navigate(R.id.action_navigation_login_to_navigation_register2)
+        }
+    }
+
 }

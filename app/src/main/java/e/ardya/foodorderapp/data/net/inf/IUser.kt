@@ -8,7 +8,10 @@ import retrofit2.http.POST
 
 interface IUser {
 
-    @POST("login")
+    @POST("AuthAPI/login")
     fun loginPhone(@Body param: RequestBody): Observable<UserModel.ResponseLogin>
+
+    @POST("AuthAPI/register")
+    fun register(@Body param: RequestBody): Observable<UserModel.ResponseRegister>
 
 }
