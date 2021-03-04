@@ -42,4 +42,9 @@ class RegisterViewModel:BaseVM() {
         }
     }
 
+    fun goToLogin(){
+        actionGotoLogin.postValue(actionGotoLogin.value?.not() ?: true)
+
+    }
+
 }

@@ -60,7 +60,7 @@ object UserService {
                 if (it.success)
                     onSuccess(it)
                 else
-                    onError(it.message)
+                    onError(it.messages)
             }, {
                 onError(it.message)
             })?.let {

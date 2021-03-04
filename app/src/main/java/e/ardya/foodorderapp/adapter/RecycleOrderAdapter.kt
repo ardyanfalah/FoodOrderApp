@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Color.parseColor
 import android.opengl.Visibility
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +14,15 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.data.model.TransaksiModel
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RecycleOrderAdapter(
     private val context: Context,
@@ -54,6 +61,7 @@ class RecycleOrderAdapter(
         return listOrder.size
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(listOrder[position],listener,position)
@@ -68,8 +76,9 @@ class RecycleOrderAdapter(
             viewHolder.itemStatus.setTextColor(parseColor("#16CF00"))
             viewHolder.itemStatus.text = "Pesanan selesai"
         }
-
-        viewHolder.itemWaktuOrder.text ="Dipesan pada "+ listOrder[position].waktu_pmsn
+        val date = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(listOrder[position].waktu_pmsn)
+        val formattedDate = SimpleDateFormat("EEEE, d MMM yyyy hh:mm ", Locale("id", "ID")).format(date)
+        viewHolder.itemWaktuOrder.text ="Dipesan pada "+ formattedDate
         if (listOrder[position].menu.size >= 2){
             viewHolder.itemMenu1.text = listOrder[position].menu[0].nama_menu
             viewHolder.itemMenu2.text = listOrder[position].menu[1].nama_menu

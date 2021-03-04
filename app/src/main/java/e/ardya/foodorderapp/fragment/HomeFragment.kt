@@ -20,6 +20,11 @@ import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.item_menu.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdapter.Listener {
@@ -125,6 +130,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onOrder(menu: MenuModel.Data, position: Int) {
         Log.d("Menu Clicked",menu.toString())
 

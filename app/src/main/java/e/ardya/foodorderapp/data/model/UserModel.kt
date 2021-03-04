@@ -9,8 +9,8 @@ object UserModel {
 
     data class ResponseRegister(
         var success: Boolean,
-        var data: Any? = null,
-        var message: String
+        var data: String? = null,
+        var messages: String
     )
 
     data class User(

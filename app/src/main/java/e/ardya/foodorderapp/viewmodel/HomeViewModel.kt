@@ -117,7 +117,7 @@ class HomeViewModel : BaseVM() {
 
     @SuppressLint("SimpleDateFormat")
     fun addOrder(menu:MenuModel.Data, position:Int){
-        val currentDate = SimpleDateFormat("yyyy-MM-dd").format(Date())
+        val currentDate = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale("id", "ID")).format(Calendar.getInstance().time)
         var currentMenu = listOrder.value
         val transaksiTemp:TransaksiModel.ItemTransaksi = TransaksiModel.ItemTransaksi()
         var isExist = false
