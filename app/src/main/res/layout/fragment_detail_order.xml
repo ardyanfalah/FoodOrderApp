@@ -35,6 +35,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:text="Dibawa Pulang"
+            android:checked="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollv_total_result" />
 
@@ -45,13 +46,14 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:text="Makan Ditempat"
+            android:enabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scrollv_total_result" />
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="240dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_view_detail_order"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,29 +105,6 @@
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:text="Alamat"
-            android:textColor="@color/ColorDarkGreen"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/et_phone_pemesan" />
-
-        <EditText
-            android:id="@+id/et_address_pemesan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
         <View
             android:id="@+id/v_total_result"
@@ -180,9 +159,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/et_address_pemesan"
-            app:layout_constraintVertical_bias="0.51" />
+            app:layout_constraintStart_toStartOf="@+id/view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
