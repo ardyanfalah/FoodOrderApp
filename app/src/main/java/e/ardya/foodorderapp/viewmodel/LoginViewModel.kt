@@ -32,9 +32,7 @@ class LoginViewModel: BaseVM() {
                 toastMessage.postValue(it ?: "Login Gagal")
             })
         } else {
-            dataLoading.postValue(false)
             toastMessage.postValue("Email dan Password tidak Boleh kosong")
-            
         }
     }
 

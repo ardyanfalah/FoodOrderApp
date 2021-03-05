@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -38,6 +39,7 @@ class OrderFragment : BaseFragment(), RecycleOrderAdapter.Listener  {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
+        hideActionBar()
         orderViewModel.getOrder()
         orderViewModel.listOrder.observe(viewLifecycleOwner, Observer {
             recycler_view_personal_order.apply {
@@ -62,7 +64,11 @@ class OrderFragment : BaseFragment(), RecycleOrderAdapter.Listener  {
         })
     }
 
-
+    fun hideActionBar(){
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.hide()
+        }
+    }
 
     override fun onItemClick(menu: TransaksiModel.PemesananWithDetail) {
         orderViewModel.listMenu.value = menu.menu

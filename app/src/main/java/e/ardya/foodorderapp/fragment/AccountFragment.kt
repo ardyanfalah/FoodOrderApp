@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -48,6 +49,7 @@ class AccountFragment : BaseFragment() {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
         accountViewModel.showAccount()
+        hideActionBar()
     }
 
     private fun initObserve() {
@@ -62,6 +64,12 @@ class AccountFragment : BaseFragment() {
             val intent = Intent(activity, RegistrationActivity::class.java)
             startActivity(intent)
         })
+    }
+
+    fun hideActionBar(){
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.hide()
+        }
     }
 
 }

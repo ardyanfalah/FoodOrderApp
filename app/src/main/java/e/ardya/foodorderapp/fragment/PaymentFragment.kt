@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -50,13 +51,20 @@ class PaymentFragment : BaseFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserve()
+        showActionBar()
         setupClickListeners(view)
     }
 
-    fun initObserve(){
+    private fun initObserve(){
         homeViewModel.dataLoading.observe(viewLifecycleOwner, Observer {
             if (it) showLoading() else dismissLoading()
         })
+    }
+
+    private fun showActionBar(){
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.show()
+        }
     }
 
     private fun setupClickListeners(view: View) {
@@ -67,13 +75,13 @@ class PaymentFragment : BaseFragment(){
             Log.d("test=>","masuk")
             homeViewModel.sendOrder(
             callbackSuccess = {
-                Toast.makeText(context, "Pemesanan Berhasil", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Berhasil Mengirim Rating", Toast.LENGTH_SHORT).show();
                 homeViewModel.listOrder.value?.clear()
                 homeViewModel.listMenu.value?.clear()
                 NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
             },
             callbackFailed = {
-                Toast.makeText(context, "Pemesanan Gagal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Gagal Mengirim Rating", Toast.LENGTH_SHORT).show();
                 NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
             })
         }

@@ -19,7 +19,7 @@ class AccountViewModel : BaseVM() {
     }
 
     fun showAccount(){
-        name.postValue(SessionHelper["nama",""])
+        name.postValue(SessionHelper["name",""])
         address.postValue(SessionHelper["address",""])
         email.postValue(SessionHelper["email",""])
     }

@@ -49,6 +49,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
+        hideActionBar()
         homeViewModel.getMenuRekomendasi()
         if(homeViewModel.listMenu.value.isNullOrEmpty()){
             homeViewModel.getMenu()
@@ -118,7 +119,11 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
 //        }
     }
 
-
+    fun hideActionBar(){
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.hide()
+        }
+    }
 
     fun initObserve(){
         homeViewModel.dataLoading.observe(viewLifecycleOwner, Observer {

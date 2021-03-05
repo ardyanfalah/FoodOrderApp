@@ -11,6 +11,7 @@ import e.ardya.foodorderapp.data.model.RatingModel
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.PemesananService
 import e.ardya.foodorderapp.data.net.service.RatingService
+import e.ardya.foodorderapp.utils.helper.SessionHelper
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDate
@@ -37,8 +38,9 @@ class OrderViewModel : BaseVM() {
 
     fun getOrder() {
         dataLoading.postValue(true)
-
+        Log.d("Session id=>",SessionHelper["id",0].toString())
         PemesananService.getPemesanan(
+            SessionHelper["id",0],
             {
                 dataLoading.postValue(false)
                 mOrderModel = it

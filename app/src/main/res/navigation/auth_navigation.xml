@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/auth_navigation"
-    app:startDestination="@+id/navigation_register">
+    app:startDestination="@+id/navigation_login">
     <fragment
         android:id="@+id/navigation_login"
         android:name="e.ardya.foodorderapp.fragment.LoginFragment"

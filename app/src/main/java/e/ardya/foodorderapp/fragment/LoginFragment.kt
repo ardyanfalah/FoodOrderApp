@@ -44,7 +44,6 @@ class LoginFragment : BaseFragment() {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
         setupClickListeners(itemView)
-
     }
 
     private fun initObserve() {

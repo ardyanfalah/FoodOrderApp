@@ -42,12 +42,13 @@ object PemesananService {
     }
 
     fun getPemesanan(
+        id:Int,
         onSuccess: (ArrayList<TransaksiModel.PemesananWithDetail>?) -> Unit,
         onError: (String?) -> Unit
     ){
         RetrofitClient.getInstance()
             ?.create(IPemesanan::class.java)
-            ?.getPemesanan()
+            ?.getPemesanan(id)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe({

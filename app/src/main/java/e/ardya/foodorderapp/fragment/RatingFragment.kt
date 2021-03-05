@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
@@ -41,10 +42,12 @@ class RatingFragment: BaseFragment(), RecycleRatingAdapter.Listener {
         return inflater.inflate(R.layout.fragment_rating, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
         setupClickListeners(itemView)
+        showActionBar()
         orderViewModel.getOrder()
         orderViewModel.listMenu.observe(viewLifecycleOwner, Observer {
             rv_rating.apply {
@@ -62,7 +65,11 @@ class RatingFragment: BaseFragment(), RecycleRatingAdapter.Listener {
 
     }
 
-
+    fun showActionBar(){
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.show()
+        }
+    }
 
     fun initObserve(){
         orderViewModel.dataLoading.observe(viewLifecycleOwner, Observer {

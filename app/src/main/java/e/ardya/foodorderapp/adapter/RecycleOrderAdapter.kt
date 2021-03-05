@@ -67,7 +67,7 @@ class RecycleOrderAdapter(
         viewHolder.bind(listOrder[position],listener,position)
         if(listOrder[position].status_pemesanan == "Menunggu_Verifikasi"){
             viewHolder.itemStatus.setTextColor(parseColor("#FF0000"))
-            viewHolder.itemStatus.text = "Pesanan Diterima"
+            viewHolder.itemStatus.text = "Menunggu Verifikasi"
 
         } else if(listOrder[position].status_pemesanan == "Proses_Pembuatan"){
             viewHolder.itemStatus.setTextColor(parseColor("#FFBB01"))

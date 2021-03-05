@@ -51,7 +51,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         super.onViewCreated(view, savedInstanceState)
         initObserve()
         setupClickListeners(view)
-//        setupBackButton()
+        showActionBar()
         homeViewModel.listOrder.observe(viewLifecycleOwner, Observer {
             recycler_view_order.apply {
                 // set a LinearLayoutManager to handle Android
@@ -90,6 +90,12 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         })
     }
 
+    fun showActionBar(){
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.show()
+        }
+    }
+
     private fun setupClickListeners(view: View) {
         view.setOnClickListener{
 
@@ -107,13 +113,6 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 //        }
     }
 
-    private fun setupBackButton() {
-        if (activity is AppCompatActivity) {
-            (activity as AppCompatActivity?)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            (activity as AppCompatActivity?)?.supportActionBar?.title = "Konfirmasi Pemesanan"
-
-        }
-    }
 
 
     override fun onItemClick(order: TransaksiModel.ItemTransaksi) {

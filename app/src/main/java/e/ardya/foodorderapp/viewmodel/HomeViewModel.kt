@@ -75,7 +75,7 @@ class HomeViewModel : BaseVM() {
         val orderHeader = TransaksiModel.HeaderPemesanan(
             id_pmsn = 0,
             id_admin = 1,
-            id_plgn = 1,
+            id_plgn = listOrder.value!![0].id_plgn!!,
             id_tmpt = null,
             waktu_pmsn= listOrder.value!![0].waktu_pmsn!!,
             waktu_dtg = null,
