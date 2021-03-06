@@ -85,12 +85,12 @@ class RatingFragment: BaseFragment(), RecycleRatingAdapter.Listener {
         view.btn_submit_rating.setOnClickListener {
             orderViewModel.sendRating(
                 callbackSuccess = {
-                    Toast.makeText(context, "Pemesanan Berhasil", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Berhasil Mengirim Rating", Toast.LENGTH_SHORT).show();
                     orderViewModel.listMenu.value?.clear()
                     NavHostFragment.findNavController(this@RatingFragment).navigate(R.id.action_ratingFragment_to_navigation_dashboard)
                 },
                 callbackFailed = {
-                    Toast.makeText(context, "Pemesanan Gagal", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Gagal Mengirim Rating", Toast.LENGTH_SHORT).show();
                 })
 
         }

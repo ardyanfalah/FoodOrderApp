@@ -75,13 +75,13 @@ class PaymentFragment : BaseFragment(){
             Log.d("test=>","masuk")
             homeViewModel.sendOrder(
             callbackSuccess = {
-                Toast.makeText(context, "Berhasil Mengirim Rating", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Pemesanan Berhasil", Toast.LENGTH_SHORT).show();
                 homeViewModel.listOrder.value?.clear()
                 homeViewModel.listMenu.value?.clear()
                 NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
             },
             callbackFailed = {
-                Toast.makeText(context, "Gagal Mengirim Rating", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Pemesanan Gagal ", Toast.LENGTH_SHORT).show();
                 NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
             })
         }

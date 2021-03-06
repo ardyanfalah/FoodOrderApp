@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -17,26 +18,17 @@ import e.ardya.foodorderapp.adapter.RecycleRecommenAdapter
 import e.ardya.foodorderapp.adapter.RecyclerAdapter
 import e.ardya.foodorderapp.base.BaseFragment
 import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.utils.helper.SessionHelper
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_menu.*
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdapter.Listener {
 
     private lateinit var homeViewModel: HomeViewModel
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var horizontalLayoutManager:RecyclerView.LayoutManager?=null
     private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
     private var adapterRekomendasi: RecyclerView.Adapter<RecycleRecommenAdapter.ViewHolder>? = null
     var  dialog:CountOrderDialogFragment = CountOrderDialogFragment()
-    var orders:ArrayList<MenuModel.Data> = ArrayList()
-    var totalPrice: Int= 0
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -50,6 +42,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
         super.onViewCreated(itemView, savedInstanceState)
         initObserve()
         hideActionBar()
+        setWelcomeName(itemView)
         homeViewModel.getMenuRekomendasi()
         if(homeViewModel.listMenu.value.isNullOrEmpty()){
             homeViewModel.getMenu()
@@ -119,13 +112,19 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
 //        }
     }
 
-    fun hideActionBar(){
+    private fun hideActionBar(){
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity?)?.supportActionBar?.hide()
         }
     }
 
-    fun initObserve(){
+    private fun setWelcomeName(view:View){
+        val welcomeMessage = "Selamat Datang, "+SessionHelper["name","anonim"]+" !"
+        val welcomeTv:TextView = view.findViewById(R.id.tv_welcome_message)
+        welcomeTv.text = welcomeMessage
+    }
+
+    private fun initObserve(){
         homeViewModel.dataLoading.observe(viewLifecycleOwner, Observer {
             if (it) showLoading() else dismissLoading()
         })

@@ -47,7 +47,8 @@ object TransaksiModel {
         val waktu_dtg : String?,
         val waktu_byr : String?,
         val status_pemesanan : String,
-        val total_harga : Int
+        val total_harga : Int,
+        val gambar_bukti_pembayaran: String? = null
     )
 
     data class DetailPemesanan(
@@ -84,7 +85,8 @@ object TransaksiModel {
         val total_harga: String,
         val waktu_byr: Any,
         val waktu_dtg: Any,
-        val waktu_pmsn: String
+        val waktu_pmsn: String,
+        val gambar_bukti_pembayaran: String? = null
     )
 
 }
