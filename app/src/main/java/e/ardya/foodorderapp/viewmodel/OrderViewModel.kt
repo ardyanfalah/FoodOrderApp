@@ -45,11 +45,11 @@ class OrderViewModel : BaseVM() {
                 dataLoading.postValue(false)
                 mOrderModel = it
                 listOrder.postValue(it)
-                Log.d("menu success=>", it.toString())
+                Log.d("get order success=>", it.toString())
             },
             {
                 dataLoading.postValue(false)
-                Log.d("menu fail=>", it.toString())
+                Log.d("get order fail=>", it.toString())
             }
         )
     }
@@ -85,12 +85,12 @@ class OrderViewModel : BaseVM() {
                 dataLoading.postValue(false)
 
                 callbackSuccess.invoke()
-                Log.d("menu success=>",it.toString())
+                Log.d("send rating success=>",it.toString())
             },
             {
                 dataLoading.postValue(false)
                 callbackFailed.invoke()
-                Log.d("menu fail=>",it.toString())
+                Log.d("send rating fail=>",it.toString())
             }
         )
     }

@@ -1,6 +1,7 @@
 package e.ardya.foodorderapp.viewmodel
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -13,7 +14,9 @@ import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.MenuService
 import e.ardya.foodorderapp.data.net.service.PemesananService
 import e.ardya.foodorderapp.data.net.service.RatingService
+import e.ardya.foodorderapp.utils.helper.FileHelper
 import e.ardya.foodorderapp.utils.helper.SessionHelper
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,6 +33,9 @@ class HomeViewModel : BaseVM() {
     var listMenuRekomendasi = MutableLiveData<ArrayList<MenuModel.Data>>()
     var totalPrice = MutableLiveData<String>()
     var totalItem = MutableLiveData<String>()
+    var mFileUri: Uri? = null
+    var mFileName = MutableLiveData<String>()
+    var mFilePath: String? = null
     init {
         listOrder.value = ArrayList()
     }
@@ -60,12 +66,12 @@ class HomeViewModel : BaseVM() {
                 dataLoading.postValue(false)
 
                 listMenuRekomendasi.postValue(it)
-                Log.d("menu success=>",it.toString())
+                Log.d("menu rekom success=>",it.toString())
             },
             {
                 dataLoading.postValue(false)
 
-                Log.d("menu fail=>",it.toString())
+                Log.d("menu rekom fail=>",it.toString())
             }
         )
     }
@@ -96,21 +102,23 @@ class HomeViewModel : BaseVM() {
 
         val list = listOf(orderHeader,orderDetail)
         val json = Gson().toJson(list)
+        val file:File? = File(mFilePath)
         Log.d("text=>",json)
         dataLoading.postValue(true)
 
         PemesananService.sendOrder(
             json,
+            file,
             {
                 dataLoading.postValue(false)
 
                 callbackSuccess.invoke()
-                Log.d("menu success=>",it.toString())
+                Log.d("send order success=>",it.toString())
             },
             {
                 dataLoading.postValue(false)
                 callbackFailed.invoke()
-                Log.d("menu fail=>",it.toString())
+                Log.d("send order failed=>",it.toString())
             }
         )
     }

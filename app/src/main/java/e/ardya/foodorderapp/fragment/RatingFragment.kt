@@ -68,6 +68,7 @@ class RatingFragment: BaseFragment(), RecycleRatingAdapter.Listener {
     fun showActionBar(){
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity?)?.supportActionBar?.show()
+            (activity as AppCompatActivity?)?.supportActionBar?.title = "Kembali"
         }
     }
 

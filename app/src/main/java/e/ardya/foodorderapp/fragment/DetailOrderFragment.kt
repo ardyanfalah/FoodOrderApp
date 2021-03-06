@@ -93,6 +93,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
     fun showActionBar(){
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity?)?.supportActionBar?.show()
+            (activity as AppCompatActivity?)?.supportActionBar?.title = "Kembali"
         }
     }
 

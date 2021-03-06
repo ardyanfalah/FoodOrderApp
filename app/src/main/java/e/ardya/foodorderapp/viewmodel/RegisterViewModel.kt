@@ -31,6 +31,7 @@ class RegisterViewModel:BaseVM() {
             )
             UserService.register(data,{
                 dataLoading.postValue(false)
+                toastMessage.postValue("Register Berhasil")
                 actionGotoLogin.postValue(actionGotoLogin.value?.not() ?: true)
             },{
                 dataLoading.postValue(false)

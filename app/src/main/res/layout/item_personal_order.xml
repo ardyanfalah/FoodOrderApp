@@ -8,15 +8,18 @@
     android:layout_marginTop="16dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    card_view:cardBackgroundColor="@android:color/transparent"
-    card_view:cardElevation="1dp">
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardElevation="4dp"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp">
+        android:padding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        >
 
 
         <TextView
