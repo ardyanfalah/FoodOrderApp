@@ -1,12 +1,13 @@
 package e.ardya.foodorderapp.fragment
 
+
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -25,6 +26,9 @@ import kotlinx.android.synthetic.main.fragment_detail_order.*
 import kotlinx.android.synthetic.main.fragment_detail_order.view.*
 
 class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
+
+    fun Int.toDp(): Int = (this/Resources.getSystem().displayMetrics.density).toInt()
+    fun Int.toPx(): Int = (this* Resources.getSystem().displayMetrics.density).toInt()
 
     private lateinit var homeViewModel: HomeViewModel
     private var adapter: RecyclerView.Adapter<RecycleMenuOrderAdapter.ViewHolder>? = null
@@ -103,6 +107,35 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         }
         view.v_total_result.setOnClickListener{
             NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_paymentFragment)
+        }
+        view.rg_order_choice.setOnCheckedChangeListener { radioGroup, i ->
+            val radio: RadioButton = view.findViewById(i)
+            when (radio.id) {
+                R.id.btn_radio_takehome -> {
+
+                    val layoutParams: ViewGroup.LayoutParams = view.view.layoutParams
+                    layoutParams.width = view.view.width
+                    layoutParams.height = 360.toPx()
+                    view.view.layoutParams = layoutParams
+                    view.btn_open_seat.visibility = View.GONE
+                    view.et_jam_kedatangan.visibility = View.GONE
+                    view.textView3.visibility = View.GONE
+                    view.et_address_pemesan.visibility = View.VISIBLE
+                    view.textView2.visibility = View.VISIBLE
+                }
+                R.id.btn_radio_atplace -> {
+                    val layoutParams: ViewGroup.LayoutParams = view.view.layoutParams
+                    layoutParams.width = view.view.width
+                    layoutParams.height = 420.toPx()
+                    view.view.layoutParams = layoutParams
+                    view.btn_open_seat.visibility = View.VISIBLE
+                    view.et_jam_kedatangan.visibility = View.VISIBLE
+                    view.textView3.visibility = View.VISIBLE
+                    view.et_address_pemesan.visibility = View.GONE
+                    view.textView2.visibility = View.GONE
+                }
+            }
+
         }
 //        view.btn_add_count.setOnClickListener {
 //            // TODO: Do some task here

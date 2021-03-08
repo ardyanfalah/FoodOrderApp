@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
+        android:paddingBottom="?android:attr/actionBarSize"
         android:paddingTop="16dp">
 
         <ScrollView
             android:id="@+id/scrollv_total_result"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="160dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,37 +29,47 @@
                 android:layout_height="match_parent" />
         </ScrollView>
 
-        <RadioButton
-            android:id="@+id/btn_radio_takehome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:text="Dibawa Pulang"
-            android:checked="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollv_total_result" />
 
-        <RadioButton
-            android:id="@+id/btn_radio_atplace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Makan Ditempat"
-            android:enabled="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollv_total_result" />
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/bg_view_detail_order"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_radio_takehome" />
+            app:layout_constraintTop_toBottomOf="@+id/scrollv_total_result" />
+
+        <RadioGroup
+            android:id="@+id/rg_order_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view">
+
+            <RadioButton
+                android:id="@+id/btn_radio_takehome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:checked="true"
+                android:text="Dibawa Pulang" />
+
+            <RadioButton
+                android:id="@+id/btn_radio_atplace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+
+                android:text="Makan Ditempat" />
+        </RadioGroup>
+
+
 
         <EditText
             android:id="@+id/et_nama_pemesan"
@@ -77,11 +88,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:text="Isikan pemesan (perorangan/instansi)"
             android:textColor="@color/ColorDarkGreen"
             app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/view" />
+            app:layout_constraintTop_toBottomOf="@+id/rg_order_choice" />
 
         <TextView
             android:id="@+id/textView4"
@@ -106,6 +117,70 @@
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat (isi alamat jika dibawa pulang)"
+            android:textColor="@color/ColorDarkGreen"
+            android:visibility="gone"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/et_phone_pemesan" />
+
+        <EditText
+            android:id="@+id/et_address_pemesan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:visibility="gone"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jam Kedatangan"
+            android:textColor="@color/ColorDarkGreen"
+            android:visibility="visible"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/et_phone_pemesan" />
+
+        <EditText
+            android:id="@+id/et_jam_kedatangan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:visibility="visible"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <Button
+            android:id="@+id/btn_open_seat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_login_orange"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:text="Pilih Tempat Duduk"
+            android:textColor="@color/color_white"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/et_jam_kedatangan" />
         <View
             android:id="@+id/v_total_result"
             android:layout_width="match_parent"
@@ -160,6 +235,8 @@
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/view" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
