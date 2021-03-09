@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_detailOrderFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_detailOrderFragment_to_seatFragment"
+            app:destination="@id/seatFragment" />
     </fragment>
     <dialog
         android:id="@+id/countOrderDialogFragment"
@@ -87,6 +90,14 @@
         <action
             android:id="@+id/action_ratingFragment_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/seatFragment"
+        android:name="e.ardya.foodorderapp.fragment.SeatFragment"
+        android:label="SeatFragment" >
+        <action
+            android:id="@+id/action_seatFragment_to_detailOrderFragment"
+            app:destination="@id/detailOrderFragment" />
     </fragment>
 
 

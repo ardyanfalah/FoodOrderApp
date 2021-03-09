@@ -137,6 +137,9 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
             }
 
         }
+        view.btn_open_seat.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_seatFragment)
+        }
 //        view.btn_add_count.setOnClickListener {
 //            // TODO: Do some task here
 //

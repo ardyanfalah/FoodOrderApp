@@ -115,6 +115,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
     private fun hideActionBar(){
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity?)?.supportActionBar?.hide()
+
         }
     }
 
