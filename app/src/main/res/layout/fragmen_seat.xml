@@ -116,7 +116,7 @@
             app:layout_constraintGuide_percent="0.9" />
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btn_choose_Seat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_btn_login_orange"

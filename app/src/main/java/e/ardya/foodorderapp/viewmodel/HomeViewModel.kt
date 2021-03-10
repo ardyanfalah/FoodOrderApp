@@ -82,7 +82,6 @@ class HomeViewModel : BaseVM() {
             id_pmsn = 0,
             id_admin = 1,
             id_plgn = listOrder.value!![0].id_plgn!!,
-            id_tmpt = null,
             waktu_pmsn= listOrder.value!![0].waktu_pmsn!!,
             waktu_dtg = null,
             waktu_byr = null,
