@@ -85,6 +85,8 @@ class PaymentFragment : BaseFragment(){
                             Toast.makeText(context, "Pemesanan Berhasil", Toast.LENGTH_SHORT).show();
                             homeViewModel.listOrder.value?.clear()
                             homeViewModel.listMenu.value?.clear()
+                            homeViewModel.listOrderTempat.value?.clear()
+                            homeViewModel.mIsTakeout = "False"
                             homeViewModel.mFilePath = null
                             homeViewModel.mFileUri = null
                             homeViewModel.mFileName.value = null

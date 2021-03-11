@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -56,6 +57,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         initObserve()
         setupClickListeners(view)
         showActionBar()
+        initState(view)
         homeViewModel.listOrder.observe(viewLifecycleOwner, Observer {
             recycler_view_order.apply {
                 // set a LinearLayoutManager to handle Android
@@ -94,6 +96,15 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         })
     }
 
+    fun initState(view:View){
+        var radioGroup:RadioGroup = view.findViewById(R.id.rg_order_choice)
+        if(homeViewModel.mIsTakeout == "True"){
+            radioGroup.check(R.id.btn_radio_takehome)
+        } else {
+            radioGroup.check(R.id.btn_radio_atplace)
+        }
+    }
+
     fun showActionBar(){
         if (activity is AppCompatActivity) {
             (activity as AppCompatActivity?)?.supportActionBar?.show()
@@ -122,6 +133,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                     view.textView3.visibility = View.GONE
                     view.et_address_pemesan.visibility = View.VISIBLE
                     view.textView2.visibility = View.VISIBLE
+                    homeViewModel.mIsTakeout = "True"
                 }
                 R.id.btn_radio_atplace -> {
                     val layoutParams: ViewGroup.LayoutParams = view.view.layoutParams
@@ -133,6 +145,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                     view.textView3.visibility = View.VISIBLE
                     view.et_address_pemesan.visibility = View.GONE
                     view.textView2.visibility = View.GONE
+                    homeViewModel.mIsTakeout = "False"
                 }
             }
 

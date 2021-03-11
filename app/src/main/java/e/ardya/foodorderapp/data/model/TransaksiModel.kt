@@ -46,7 +46,8 @@ object TransaksiModel {
         val waktu_byr : String?,
         val status_pemesanan : String,
         val total_harga : Int,
-        val gambar_bukti_pembayaran: String? = null
+        val gambar_bukti_pembayaran: String? = null,
+        val is_takeout: String? = null
     )
 
     data class DetailPemesanan(
@@ -86,4 +87,10 @@ object TransaksiModel {
         val gambar_bukti_pembayaran: String? = null
     )
 
+
+    data class DetailTempat(
+        val id_detail_tempat: Int,
+        val id_pmsn: Int,
+        val id_tmpt: Int
+    )
 }

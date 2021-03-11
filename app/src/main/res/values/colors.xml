@@ -10,4 +10,7 @@
     <color name="colorBaseSoftGreen">#E4F8E1</color>
     <color name="colorBaseGray">#F8F8F8</color>
     <color name="colorGreenString">#109400</color>
+    <color name="colorSeatEmpty">#FF5E00</color>
+    <color name="colorSeatReserved">#D4D4D4</color>
+    <color name="colorSeatChosen">#16CF00</color>
 </resources>

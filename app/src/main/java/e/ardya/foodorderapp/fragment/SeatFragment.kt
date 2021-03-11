@@ -1,12 +1,14 @@
 package e.ardya.foodorderapp.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import e.ardya.foodorderapp.R
@@ -15,6 +17,7 @@ import e.ardya.foodorderapp.adapter.ViewPagerSeatAdapter
 import e.ardya.foodorderapp.base.BaseFragment
 import e.ardya.foodorderapp.databinding.FragmenSeatBinding
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
+import kotlinx.android.synthetic.main.fragmen_seat.view.*
 
 class SeatFragment: BaseFragment() {
 
@@ -41,8 +44,10 @@ class SeatFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserve()
+        setupClickListener(view)
         val viewPager:ViewPager = view.findViewById(R.id.vp_seat)
         setupViewPager(viewPager)
+        homeViewModel.getTempat()
     }
 
     private fun setupViewPager(viewpager: ViewPager) {
@@ -62,4 +67,12 @@ class SeatFragment: BaseFragment() {
             if (it) showLoading() else dismissLoading()
         })
     }
+
+    fun setupClickListener(view:View){
+
+        view.btn_choose_Seat.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.action_seatFragment_to_detailOrderFragment)
+        }
+    }
+
 }

@@ -10,10 +10,12 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import e.ardya.foodorderapp.base.BaseVM
 import e.ardya.foodorderapp.data.model.MenuModel
+import e.ardya.foodorderapp.data.model.TempatModel
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.data.net.service.MenuService
 import e.ardya.foodorderapp.data.net.service.PemesananService
 import e.ardya.foodorderapp.data.net.service.RatingService
+import e.ardya.foodorderapp.data.net.service.TempatService
 import e.ardya.foodorderapp.utils.helper.FileHelper
 import e.ardya.foodorderapp.utils.helper.SessionHelper
 import java.io.File
@@ -30,12 +32,18 @@ class HomeViewModel : BaseVM() {
     var mMenuModel: ArrayList<MenuModel.Data>? = ArrayList()
     var listMenu = MutableLiveData<ArrayList<MenuModel.Data>>()
     var listOrder = MutableLiveData<ArrayList<TransaksiModel.ItemTransaksi>>()
+    var listOrderTempat = MutableLiveData<ArrayList<TransaksiModel.DetailTempat>>()
     var listMenuRekomendasi = MutableLiveData<ArrayList<MenuModel.Data>>()
+    var listTempat = MutableLiveData<ArrayList<TempatModel.Data>>()
+    var mTempatModel: ArrayList<TempatModel.Data>?= ArrayList()
     var totalPrice = MutableLiveData<String>()
     var totalItem = MutableLiveData<String>()
     var mFileUri: Uri? = null
     var mFileName = MutableLiveData<String>()
     var mFilePath: String? = null
+    var mIsTakeout: String? = "True"
+
+
     init {
         listOrder.value = ArrayList()
     }
@@ -48,6 +56,25 @@ class HomeViewModel : BaseVM() {
 
                 mMenuModel = it
                 listMenu.postValue(it)
+                Log.d("menu success=>",it.toString())
+            },
+            {
+                dataLoading.postValue(false)
+
+                Log.d("menu fail=>",it.toString())
+            }
+        )
+    }
+
+    fun getTempat(){
+        dataLoading.postValue(true)
+
+        TempatService.getTempat(
+            {
+                dataLoading.postValue(false)
+
+                mTempatModel = it
+                listTempat.postValue(it)
                 Log.d("menu success=>",it.toString())
             },
             {
@@ -86,7 +113,8 @@ class HomeViewModel : BaseVM() {
             waktu_dtg = null,
             waktu_byr = null,
             status_pemesanan = "Menunggu_Verifikasi",
-            total_harga = totalPrice.value!!.substring(4).toInt()
+            total_harga = totalPrice.value!!.substring(4).toInt(),
+            is_takeout = mIsTakeout
         )
         listOrder.value!!.forEach { order->
             val temp=TransaksiModel.DetailPemesanan(
@@ -99,7 +127,12 @@ class HomeViewModel : BaseVM() {
         }
 
 
-        val list = listOf(orderHeader,orderDetail)
+        var list = if(mIsTakeout == "True"){
+            listOf(orderHeader,orderDetail)
+        } else {
+            listOf(orderHeader,orderDetail,listOrderTempat.value)
+        }
+
         val json = Gson().toJson(list)
         val file:File? = File(mFilePath)
         Log.d("text=>",json)
@@ -120,6 +153,33 @@ class HomeViewModel : BaseVM() {
                 Log.d("send order failed=>",it.toString())
             }
         )
+    }
+
+    fun addSeat(id_tempat:Int){
+        var seat : TransaksiModel.DetailTempat = TransaksiModel.DetailTempat(
+            id_pmsn = 0,
+            id_tmpt = id_tempat,
+            id_detail_tempat = 0
+        )
+        if(listOrderTempat.value.isNullOrEmpty()){
+            var tempTempat:ArrayList<TransaksiModel.DetailTempat> = ArrayList<TransaksiModel.DetailTempat>()
+            tempTempat.add(seat)
+            listOrderTempat.postValue(tempTempat)
+        } else {
+            listOrderTempat.value?.add(seat)
+            listOrderTempat.postValue(listOrderTempat.value)
+        }
+
+    }
+
+    fun removeSeat(id_tempat: Int){
+        val seat : TransaksiModel.DetailTempat = TransaksiModel.DetailTempat(
+            id_pmsn = 0,
+            id_tmpt = id_tempat,
+            id_detail_tempat = 0
+        )
+        listOrderTempat.value?.remove(seat)
+        listOrderTempat.postValue(listOrderTempat.value)
     }
 
     @SuppressLint("SimpleDateFormat")
