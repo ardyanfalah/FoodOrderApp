@@ -19,6 +19,7 @@ object RatingModel {
         val id_menu: Int,
         val nilai: Long,
         val catatan: String,
-        val waktu_rekam: String
+        val waktu_rekam: String,
+        val id_pmsn: Int
     )
 }

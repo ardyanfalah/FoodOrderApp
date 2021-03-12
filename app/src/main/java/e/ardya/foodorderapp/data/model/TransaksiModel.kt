@@ -62,7 +62,7 @@ object TransaksiModel {
         val id_detail_pemesanan: Int,
         val id_pmsn: Int?,
         val id_menu: Int?,
-        val jumlah_pesan: Int,
+        val jumlah_pesan: Int,r
         val rating_status: String,
         val nama_menu: String,
         val harga_menu: String,

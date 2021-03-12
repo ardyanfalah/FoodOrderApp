@@ -69,7 +69,8 @@ class OrderViewModel : BaseVM() {
                 id_menu = menu.id_menu!!,
                 catatan = (if(menu.catatan != null) menu.catatan else "").toString(),
                 nilai = if(menu.rating != null) menu.rating!!.toLong() else 0,
-                waktu_rekam= timeStamp
+                waktu_rekam= timeStamp,
+                id_pmsn = menu.id_pmsn!!
             )
             rating.add(temp)
         }
