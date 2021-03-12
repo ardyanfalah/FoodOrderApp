@@ -5,9 +5,10 @@
     android:id="@+id/card_menu"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
+    android:layout_marginBottom="8dp"
     card_view:cardBackgroundColor="@android:color/white"
     card_view:cardElevation="4dp"
     >
@@ -57,10 +58,12 @@
             android:id="@+id/tv_datetime_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="Dipesan pada"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toStartOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_meja_order" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -86,6 +89,25 @@
             android:text="x0"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_count_menu_1" />
+
+        <TextView
+            android:id="@+id/tv_meja_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Tempat Duduk"
+            android:textColor="#000000"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_menu_2"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_menu_2" />
+
+        <TextView
+            android:id="@+id/tv_value_meja"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="None"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_count_menu_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

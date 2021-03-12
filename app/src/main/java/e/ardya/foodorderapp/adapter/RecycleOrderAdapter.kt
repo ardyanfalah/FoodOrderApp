@@ -2,25 +2,17 @@ package e.ardya.foodorderapp.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Color.parseColor
-import android.opengl.Visibility
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -41,6 +33,9 @@ class RecycleOrderAdapter(
         var itemMenu2:TextView = itemView.findViewById(R.id.tv_menu_2)
         var itemCountMenu1:TextView = itemView.findViewById(R.id.tv_count_menu_1)
         var itemCountMenu2:TextView = itemView.findViewById(R.id.tv_count_menu_2)
+        var itemMejaLabel: TextView = itemView.findViewById(R.id.tv_meja_order)
+        var itemMejaValue:TextView = itemView.findViewById(R.id.tv_value_meja)
+
         fun bind(order: TransaksiModel.PemesananWithDetail, listener: RecycleOrderAdapter.Listener, position: Int) {
             itemView.setOnClickListener { listener.onItemClick(order) }
         }
@@ -95,6 +90,7 @@ class RecycleOrderAdapter(
             viewHolder.itemCountMenu1.visibility = View.GONE
             viewHolder.itemCountMenu2.visibility = View.GONE
         }
+        viewHolder.itemMejaValue.text = listOrder[position].tempat
     }
 
 }

@@ -10,4 +10,7 @@ interface ITempat {
     @GET("TempatAPI")
     fun getTempat(): Observable<TempatModel.ResponseTempat>
 
+    @GET("TempatAPI/count_empty")
+    fun getEmptyPlace(): Observable<TempatModel.ResponseAvailability>
+
 }

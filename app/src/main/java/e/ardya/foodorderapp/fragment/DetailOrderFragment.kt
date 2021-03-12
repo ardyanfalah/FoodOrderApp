@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -22,6 +24,7 @@ import e.ardya.foodorderapp.adapter.RecycleMenuOrderAdapter
 import e.ardya.foodorderapp.base.BaseFragment
 import e.ardya.foodorderapp.data.model.TransaksiModel
 import e.ardya.foodorderapp.databinding.FragmentDetailOrderBinding
+import e.ardya.foodorderapp.utils.helper.SessionHelper
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_detail_order.*
 import kotlinx.android.synthetic.main.fragment_detail_order.view.*
@@ -58,6 +61,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         setupClickListeners(view)
         showActionBar()
         initState(view)
+        homeViewModel.getTempatAvailability()
         homeViewModel.listOrder.observe(viewLifecycleOwner, Observer {
             recycler_view_order.apply {
                 // set a LinearLayoutManager to handle Android
@@ -97,7 +101,18 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
     }
 
     fun initState(view:View){
-        var radioGroup:RadioGroup = view.findViewById(R.id.rg_order_choice)
+        val radioGroup:RadioGroup = view.findViewById(R.id.rg_order_choice)
+        val etPemesan:EditText = view.findViewById(R.id.et_nama_pemesan)
+        val etPhone:EditText = view.findViewById(R.id.et_phone_pemesan)
+        val etAddress:EditText = view.findViewById(R.id.et_address_pemesan)
+
+        etPemesan.setText(SessionHelper["name", ""])
+        etPemesan.isEnabled = false
+        etPhone.setText(SessionHelper["phone", ""])
+        etPhone.isEnabled = false
+        etAddress.setText(SessionHelper["address", ""])
+        etAddress.isEnabled = false
+
         if(homeViewModel.mIsTakeout == "True"){
             radioGroup.check(R.id.btn_radio_takehome)
         } else {
@@ -117,7 +132,13 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 
         }
         view.v_total_result.setOnClickListener{
-            NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_paymentFragment)
+            if(homeViewModel.mIsTakeout == "True"){
+                NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_paymentFragment)
+            } else if(homeViewModel.mIsTakeout == "False" && !homeViewModel.listOrderTempat.value.isNullOrEmpty()){
+                NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_paymentFragment)
+            } else {
+                showMessage("Warning", "Harus ada tempat yang dipiilih")
+            }
         }
         view.rg_order_choice.setOnCheckedChangeListener { radioGroup, i ->
             val radio: RadioButton = view.findViewById(i)
@@ -151,7 +172,11 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 
         }
         view.btn_open_seat.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_seatFragment)
+            if(homeViewModel.mIsThereEmptyPlace != null && homeViewModel.mIsThereEmptyPlace==true){
+                NavHostFragment.findNavController(this).navigate(R.id.action_detailOrderFragment_to_seatFragment)
+            } else {
+                showMessage("Warning", "Semua Meja penuh saat ini")
+            }
         }
 //        view.btn_add_count.setOnClickListener {
 //            // TODO: Do some task here

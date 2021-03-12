@@ -91,6 +91,8 @@ class PaymentFragment : BaseFragment(){
                             homeViewModel.mFileUri = null
                             homeViewModel.mFileName.value = null
                             homeViewModel.mFileName.postValue(homeViewModel.mFileName.value )
+                            homeViewModel.mIsTakeout= "True"
+                            homeViewModel.mIsThereEmptyPlace = null
                             NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
                         },
                         callbackFailed = {

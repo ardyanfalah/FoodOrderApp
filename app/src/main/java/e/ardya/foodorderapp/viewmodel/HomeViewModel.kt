@@ -42,7 +42,7 @@ class HomeViewModel : BaseVM() {
     var mFileName = MutableLiveData<String>()
     var mFilePath: String? = null
     var mIsTakeout: String? = "True"
-
+    var mIsThereEmptyPlace: Boolean? = null
 
     init {
         listOrder.value = ArrayList()
@@ -75,6 +75,24 @@ class HomeViewModel : BaseVM() {
 
                 mTempatModel = it
                 listTempat.postValue(it)
+                Log.d("menu success=>",it.toString())
+            },
+            {
+                dataLoading.postValue(false)
+
+                Log.d("menu fail=>",it.toString())
+            }
+        )
+    }
+
+    fun getTempatAvailability(){
+        dataLoading.postValue(true)
+
+        TempatService.getTempatAvailable(
+            {
+                dataLoading.postValue(false)
+
+                mIsThereEmptyPlace = it
                 Log.d("menu success=>",it.toString())
             },
             {
@@ -196,7 +214,7 @@ class HomeViewModel : BaseVM() {
         transaksiTemp.jumlah_pesan = 1
         transaksiTemp.waktu_pmsn = currentDate
         transaksiTemp.waktu_dtg = null
-        transaksiTemp.waktu_byr = null
+        transaksiTemp.waktu_byr = currentDate
         transaksiTemp.nama_menu = menu.nama_menu
         if(!listOrder.value.isNullOrEmpty()){
             for(it in listOrder.value!!){

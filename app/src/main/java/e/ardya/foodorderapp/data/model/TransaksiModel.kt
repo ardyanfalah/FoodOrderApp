@@ -84,7 +84,9 @@ object TransaksiModel {
         val waktu_byr: Any,
         val waktu_dtg: Any,
         val waktu_pmsn: String,
-        val gambar_bukti_pembayaran: String? = null
+        val gambar_bukti_pembayaran: String? = null,
+        val tempat: String?=null
+
     )
 
 

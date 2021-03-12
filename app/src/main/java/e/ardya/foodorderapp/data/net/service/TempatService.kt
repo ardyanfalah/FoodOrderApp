@@ -34,4 +34,27 @@ object TempatService {
             }
     }
 
+    fun getTempatAvailable(
+        onSuccess: (Boolean?) -> Unit,
+        onError: (String?) -> Unit
+    ){
+        RetrofitClient.getInstance()
+            ?.create(ITempat::class.java)
+            ?.getEmptyPlace()
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribeOn(Schedulers.io())
+            ?.subscribe({
+                if (it.success)
+                    onSuccess(it?.data)
+                else
+                    onError(it.messages)
+            }, {
+                onError(it.message)
+            })?.let {
+                CompositeDisposable().add(
+                    it
+                )
+            }
+    }
+
 }

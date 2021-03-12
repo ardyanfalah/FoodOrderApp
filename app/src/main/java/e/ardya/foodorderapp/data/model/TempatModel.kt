@@ -7,6 +7,12 @@ object TempatModel {
         val success: Boolean
     )
 
+    data class ResponseAvailability(
+        val data: Boolean,
+        val messages: String,
+        val success: Boolean
+    )
+
     data class Data(
         val deskripsi: String?,
         val id_tmpt: Int,
