@@ -1,16 +1,18 @@
 package e.ardya.foodorderapp.fragment
 
 
+import android.app.TimePickerDialog
+import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -28,6 +30,9 @@ import e.ardya.foodorderapp.utils.helper.SessionHelper
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_detail_order.*
 import kotlinx.android.synthetic.main.fragment_detail_order.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
 
@@ -37,7 +42,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
     private lateinit var homeViewModel: HomeViewModel
     private var adapter: RecyclerView.Adapter<RecycleMenuOrderAdapter.ViewHolder>? = null
     lateinit var binding: FragmentDetailOrderBinding
-
+    private var arrivalTime = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -105,7 +110,10 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         val etPemesan:EditText = view.findViewById(R.id.et_nama_pemesan)
         val etPhone:EditText = view.findViewById(R.id.et_phone_pemesan)
         val etAddress:EditText = view.findViewById(R.id.et_address_pemesan)
+        val etJamKedatangan:EditText = view.findViewById(R.id.et_jam_kedatangan)
 
+        etJamKedatangan.isEnabled = false
+        etJamKedatangan.setText(arrivalTime)
         etPemesan.setText(SessionHelper["name", ""])
         etPemesan.isEnabled = false
         etPhone.setText(SessionHelper["phone", ""])
@@ -151,6 +159,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                     view.view.layoutParams = layoutParams
                     view.btn_open_seat.visibility = View.GONE
                     view.et_jam_kedatangan.visibility = View.GONE
+                    view.btn_pick_time.visibility = View.GONE
                     view.textView3.visibility = View.GONE
                     view.et_address_pemesan.visibility = View.VISIBLE
                     view.textView2.visibility = View.VISIBLE
@@ -163,6 +172,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                     view.view.layoutParams = layoutParams
                     view.btn_open_seat.visibility = View.VISIBLE
                     view.et_jam_kedatangan.visibility = View.VISIBLE
+                    view.btn_pick_time.visibility = View.VISIBLE
                     view.textView3.visibility = View.VISIBLE
                     view.et_address_pemesan.visibility = View.GONE
                     view.textView2.visibility = View.GONE
@@ -178,10 +188,34 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                 showMessage("Warning", "Semua Meja penuh saat ini")
             }
         }
-//        view.btn_add_count.setOnClickListener {
-//            // TODO: Do some task here
-//
-//        }
+        view.btn_pick_time.setOnClickListener {
+            // Get Current Time
+
+            // Get Current Time
+            val c: Calendar = Calendar.getInstance()
+            var mHour = c.get(Calendar.HOUR_OF_DAY)
+            var mMinute = c.get(Calendar.MINUTE)
+            var currentDate = ""
+            // Launch Time Picker Dialog
+
+            // Launch Time Picker Dialog
+            val timePickerDialog = TimePickerDialog(
+                context,
+                OnTimeSetListener { _, hourOfDay, minute ->
+                    c.set(Calendar.HOUR_OF_DAY,hourOfDay)
+                    c.set(Calendar.MINUTE,minute)
+                    arrivalTime ="$mHour:$mMinute"
+                    view.et_jam_kedatangan.setText(arrivalTime)
+                    currentDate = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale("id", "ID")).format(c.time)
+                    homeViewModel.mArrivaltime = currentDate
+                },
+                mHour,
+                mMinute,
+                false
+            )
+            timePickerDialog.show()
+
+        }
 //        view.btnNegative.setOnClickListener {
 //            // TODO: Do some task here
 //            dismiss()

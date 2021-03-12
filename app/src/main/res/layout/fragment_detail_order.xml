@@ -123,7 +123,7 @@
             android:layout_height="wrap_content"
             android:text="Alamat (isi alamat jika dibawa pulang)"
             android:textColor="@color/ColorDarkGreen"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -136,7 +136,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:ems="10"
-            android:visibility="gone"
+            android:visibility="visible"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -148,7 +148,7 @@
             android:layout_height="wrap_content"
             android:text="Jam Kedatangan"
             android:textColor="@color/ColorDarkGreen"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -156,14 +156,13 @@
 
         <EditText
             android:id="@+id/et_jam_kedatangan"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:ems="10"
-            android:visibility="visible"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/view"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/guideline10"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -236,6 +235,24 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/view" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6"/>
+
+        <Button
+            android:id="@+id/btn_pick_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Jam"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/guideline10"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            android:background="@drawable/bg_btn_login_orange"
+            android:textColor="@color/color_white"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

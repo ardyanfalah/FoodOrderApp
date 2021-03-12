@@ -43,6 +43,7 @@ class HomeViewModel : BaseVM() {
     var mFilePath: String? = null
     var mIsTakeout: String? = "True"
     var mIsThereEmptyPlace: Boolean? = null
+    var mArrivaltime:String= " "
 
     init {
         listOrder.value = ArrayList()
@@ -128,7 +129,7 @@ class HomeViewModel : BaseVM() {
             id_admin = 1,
             id_plgn = listOrder.value!![0].id_plgn!!,
             waktu_pmsn= listOrder.value!![0].waktu_pmsn!!,
-            waktu_dtg = null,
+            waktu_dtg = mArrivaltime,
             waktu_byr = null,
             status_pemesanan = "Menunggu_Verifikasi",
             total_harga = totalPrice.value!!.substring(4).toInt(),
