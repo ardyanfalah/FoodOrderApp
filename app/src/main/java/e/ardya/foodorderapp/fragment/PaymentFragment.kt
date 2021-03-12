@@ -94,6 +94,7 @@ class PaymentFragment : BaseFragment(){
                             homeViewModel.mIsTakeout= "True"
                             homeViewModel.mIsThereEmptyPlace = null
                             homeViewModel.mArrivaltime = ""
+                            homeViewModel.mTimeHour = ""
                             NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
                         },
                         callbackFailed = {

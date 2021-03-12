@@ -42,7 +42,6 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
     private lateinit var homeViewModel: HomeViewModel
     private var adapter: RecyclerView.Adapter<RecycleMenuOrderAdapter.ViewHolder>? = null
     lateinit var binding: FragmentDetailOrderBinding
-    private var arrivalTime = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -113,7 +112,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         val etJamKedatangan:EditText = view.findViewById(R.id.et_jam_kedatangan)
 
         etJamKedatangan.isEnabled = false
-        etJamKedatangan.setText(arrivalTime)
+        etJamKedatangan.setText(homeViewModel.mTimeHour)
         etPemesan.setText(SessionHelper["name", ""])
         etPemesan.isEnabled = false
         etPhone.setText(SessionHelper["phone", ""])
@@ -204,7 +203,8 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                 OnTimeSetListener { _, hourOfDay, minute ->
                     c.set(Calendar.HOUR_OF_DAY,hourOfDay)
                     c.set(Calendar.MINUTE,minute)
-                    arrivalTime ="$mHour:$mMinute"
+                    var arrivalTime ="$mHour:$mMinute"
+                    homeViewModel.mTimeHour = arrivalTime
                     view.et_jam_kedatangan.setText(arrivalTime)
                     currentDate = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale("id", "ID")).format(c.time)
                     homeViewModel.mArrivaltime = currentDate

@@ -43,8 +43,8 @@ class HomeViewModel : BaseVM() {
     var mFilePath: String? = null
     var mIsTakeout: String? = "True"
     var mIsThereEmptyPlace: Boolean? = null
-    var mArrivaltime:String= " "
-
+    var mArrivaltime:String= ""
+    var mTimeHour:String = ""
     init {
         listOrder.value = ArrayList()
     }
