@@ -12,6 +12,7 @@ class AccountViewModel : BaseVM() {
     var name: MutableLiveData<String> = MutableLiveData()
     var address: MutableLiveData<String> = MutableLiveData()
     var email: MutableLiveData<String> = MutableLiveData()
+    var phone: MutableLiveData<String> = MutableLiveData()
     var logoutObserve : ActionLiveData<Boolean> =ActionLiveData()
 
     fun logout(){
@@ -22,5 +23,6 @@ class AccountViewModel : BaseVM() {
         name.postValue(SessionHelper["name",""])
         address.postValue(SessionHelper["address",""])
         email.postValue(SessionHelper["email",""])
+        phone.postValue(SessionHelper["phone",""])
     }
 }

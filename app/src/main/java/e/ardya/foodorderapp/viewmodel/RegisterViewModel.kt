@@ -15,17 +15,18 @@ class RegisterViewModel:BaseVM() {
     var mPassword:  MutableLiveData<String> = MutableLiveData()
     var mAddress:  MutableLiveData<String> = MutableLiveData()
     var mEmail:  MutableLiveData<String> = MutableLiveData()
+    var mPhone:  MutableLiveData<String> = MutableLiveData()
     var actionGotoLogin: ActionLiveData<Boolean> = ActionLiveData()
 
     fun register(){
         dataLoading.postValue(true)
-        if(!mName.value.isNullOrEmpty() && !mPassword.value.isNullOrEmpty() && !mAddress.value.isNullOrEmpty() && !mEmail.value.isNullOrEmpty()){
+        if(!mName.value.isNullOrEmpty() && !mPassword.value.isNullOrEmpty() && !mAddress.value.isNullOrEmpty() && !mEmail.value.isNullOrEmpty()  && !mPhone.value.isNullOrEmpty()){
             val data = UserModel.User(
                 mAddress.value,
                 mEmail.value,
                 0,
                 mName.value,
-                "",
+                mPhone.value,
                 mPassword.value,
                 "Active"
             )
