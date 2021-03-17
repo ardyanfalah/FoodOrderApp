@@ -75,6 +75,7 @@ class PaymentFragment : BaseFragment(){
     private fun setupClickListeners(view: View) {
         view.setOnClickListener{
 
+
         }
         view.btn_payment_confirm.setOnClickListener{
             if(homeViewModel.mFilePath != null ){
@@ -94,7 +95,8 @@ class PaymentFragment : BaseFragment(){
                             homeViewModel.mIsTakeout= "True"
                             homeViewModel.mIsThereEmptyPlace = null
                             homeViewModel.mArrivaltime = ""
-                            homeViewModel.mTimeHour = ""
+                            homeViewModel.mTimeHour.value = null
+                            homeViewModel.mTimeHour.postValue(homeViewModel.mTimeHour.value)
                             NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
                         },
                         callbackFailed = {
