@@ -30,12 +30,11 @@
         </ScrollView>
 
 
-
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="360dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_view_detail_order"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="Isikan pemesan (perorangan/instansi)"
+            android:text="Pemesan"
             android:textColor="@color/ColorDarkGreen"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/rg_order_choice" />
@@ -100,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="No. Hp (bisa dihubungi)"
+            android:text="No HP"
             android:textColor="@color/ColorDarkGreen"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/et_nama_pemesan" />
@@ -121,11 +120,11 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Alamat (isi alamat jika dibawa pulang)"
-            android:textColor="@color/ColorDarkGreen"
-            android:visibility="visible"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:text="Alamat"
+            android:textColor="@color/ColorDarkGreen"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/et_phone_pemesan" />
 
@@ -170,21 +169,23 @@
         <Button
             android:id="@+id/btn_open_seat"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_btn_login_orange"
+            android:layout_height="28dp"
             android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
             android:layout_marginTop="16dp"
-            android:visibility="gone"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/bg_btn_login_orange"
             android:text="Pilih Tempat Duduk"
             android:textColor="@color/color_white"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/et_jam_kedatangan" />
+
         <View
             android:id="@+id/v_total_result"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_view_detail_order"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
@@ -246,14 +247,14 @@
         <Button
             android:id="@+id/btn_pick_time"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_btn_login_orange"
             android:text="Pilih Jam"
+            android:textColor="@color/color_white"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/guideline10"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            android:background="@drawable/bg_btn_login_orange"
-            android:textColor="@color/color_white"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
