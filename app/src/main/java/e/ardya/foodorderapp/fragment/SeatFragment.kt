@@ -1,10 +1,13 @@
 package e.ardya.foodorderapp.fragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -44,6 +47,7 @@ class SeatFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initObserve()
+        showActionBar()
         setupClickListener(view)
         val viewPager:ViewPager = view.findViewById(R.id.vp_seat)
         setupViewPager(viewPager)
@@ -66,6 +70,15 @@ class SeatFragment: BaseFragment() {
         homeViewModel.dataLoading.observe(viewLifecycleOwner, Observer {
             if (it) showLoading() else dismissLoading()
         })
+    }
+
+    fun showActionBar(){
+        var colorDrawable = ColorDrawable(Color.parseColor("#00AF06"))
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity?)?.supportActionBar?.show()
+            (activity as AppCompatActivity?)?.supportActionBar?.setBackgroundDrawable(colorDrawable)
+            (activity as AppCompatActivity?)?.supportActionBar?.title = "Kembali"
+        }
     }
 
     fun setupClickListener(view:View){
