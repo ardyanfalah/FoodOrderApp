@@ -100,6 +100,10 @@ class PaymentFragment : BaseFragment(){
                             NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
                         },
                         callbackFailed = {
+                            homeViewModel.mFilePath = null
+                            homeViewModel.mFileUri = null
+                            homeViewModel.mFileName.value = null
+                            homeViewModel.mFileName.postValue(homeViewModel.mFileName.value )
                             Toast.makeText(context, "Pemesanan Gagal ", Toast.LENGTH_SHORT).show();
                             NavHostFragment.findNavController(this@PaymentFragment).navigate(R.id.action_paymentFragment_to_navigation_home)
                         })

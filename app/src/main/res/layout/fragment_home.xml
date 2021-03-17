@@ -1,80 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragment.HomeFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    tools:context=".fragment.HomeFragment"
+    android:id="@+id/swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         >
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_welcome"
-            android:id="@+id/layout_welcome"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/label_recommend"
-            android:padding="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tv_welcome_message"
+            >
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Selamat Datang, Anonim!"
-                android:textColor="#ffffff"/>
+                android:background="@drawable/background_welcome"
+                android:id="@+id/layout_welcome"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/label_recommend"
+                android:padding="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_welcome_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Selamat Datang, Anonim!"
+                    android:textColor="#ffffff"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Silakan pilih makanan favoritmu"
+                    android:textColor="#ffffff"/>
+            </LinearLayout>
+
             <TextView
+                android:id="@+id/label_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Silakan pilih makanan favoritmu"
-                android:textColor="#ffffff"/>
-        </LinearLayout>
+                android:text="Recommended"
+                android:textSize="32sp"
+                app:layout_constraintTop_toBottomOf="@id/layout_welcome"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_view_recommend"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/label_recommend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Recommended"
-            android:textSize="32sp"
-            app:layout_constraintTop_toBottomOf="@id/layout_welcome"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_view_recommend"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view_recommend"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            app:layout_constraintBottom_toTopOf="@id/label_recommend"
-            app:layout_constraintTop_toBottomOf="@id/label_makanan"
-            app:layout_constraintVertical_bias="0.0" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:layout_constraintBottom_toTopOf="@id/label_recommend"
+                app:layout_constraintTop_toBottomOf="@id/label_makanan"
+                app:layout_constraintVertical_bias="0.0" />
 
 
-        <TextView
-            android:id="@+id/label_makanan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Makanan"
-            android:textSize="32sp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@id/recycler_view_recommend"
-            app:layout_constraintBottom_toTopOf="@id/recycler_view">
+            <TextView
+                android:id="@+id/label_makanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Makanan"
+                android:textSize="32sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_recommend"
+                app:layout_constraintBottom_toTopOf="@id/recycler_view">
 
-        </TextView>
+            </TextView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
 
-            android:layout_height="wrap_content"
-            app:layout_constrainedHeight="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_makanan"
-            android:paddingBottom="120dp"/>
+                android:layout_height="wrap_content"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_makanan"
+                android:paddingBottom="120dp"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+

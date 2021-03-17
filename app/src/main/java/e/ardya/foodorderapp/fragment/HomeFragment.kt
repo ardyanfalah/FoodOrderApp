@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import e.ardya.foodorderapp.R
 import e.ardya.foodorderapp.adapter.RecycleRecommenAdapter
 import e.ardya.foodorderapp.adapter.RecyclerAdapter
@@ -21,6 +23,7 @@ import e.ardya.foodorderapp.data.model.MenuModel
 import e.ardya.foodorderapp.utils.helper.SessionHelper
 import e.ardya.foodorderapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
 class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdapter.Listener {
@@ -43,6 +46,7 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
         initObserve()
         hideActionBar()
         setWelcomeName(itemView)
+        setupClickListeners(itemView)
         homeViewModel.getMenuRekomendasi()
         if(homeViewModel.listMenu.value.isNullOrEmpty()){
             homeViewModel.getMenu()
@@ -132,6 +136,15 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
 
     override fun onItemClick(menu: MenuModel.Data) {
 
+    }
+
+    private fun setupClickListeners(view: View) {
+        view.swipe.setOnRefreshListener {
+            var swipeRefreshLayout:SwipeRefreshLayout = view.findViewById(R.id.swipe)
+            homeViewModel.getMenu()
+            homeViewModel.getMenuRekomendasi()
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
