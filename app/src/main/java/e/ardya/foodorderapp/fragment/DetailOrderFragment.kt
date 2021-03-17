@@ -114,7 +114,7 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
         val etJamKedatangan:EditText = view.findViewById(R.id.et_jam_kedatangan)
 
         etJamKedatangan.isEnabled = false
-        etJamKedatangan.setText(homeViewModel.mTimeHour)
+//        etJamKedatangan.setText(homeViewModel.mTimeHour)
         etPemesan.setText(SessionHelper["name", ""])
         etPemesan.isEnabled = false
         etPhone.setText(SessionHelper["phone", ""])
@@ -207,10 +207,12 @@ class DetailOrderFragment: BaseFragment(),RecycleMenuOrderAdapter.Listener {
                 OnTimeSetListener { _, hourOfDay, minute ->
                     c.set(Calendar.HOUR_OF_DAY,hourOfDay)
                     c.set(Calendar.MINUTE,minute)
-                    var arrivalTime ="$mHour:$mMinute"
-                    homeViewModel.mTimeHour = arrivalTime
+                    var arrivalTime ="$hourOfDay:$minute"
+                    homeViewModel.mTimeHour.value = arrivalTime
+                    homeViewModel.mTimeHour.postValue( homeViewModel.mTimeHour.value)
                     view.et_jam_kedatangan.setText(arrivalTime)
                     currentDate = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale("id", "ID")).format(c.time)
+                    Log.d("time=>",c.time.toString())
                     homeViewModel.mArrivaltime = currentDate
                 },
                 mHour,

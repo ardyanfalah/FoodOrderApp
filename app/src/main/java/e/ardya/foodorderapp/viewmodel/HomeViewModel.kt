@@ -44,7 +44,7 @@ class HomeViewModel : BaseVM() {
     var mIsTakeout: String? = "True"
     var mIsThereEmptyPlace: Boolean? = null
     var mArrivaltime:String= ""
-    var mTimeHour:String = ""
+    var mTimeHour= MutableLiveData<String>()
     init {
         listOrder.value = ArrayList()
     }

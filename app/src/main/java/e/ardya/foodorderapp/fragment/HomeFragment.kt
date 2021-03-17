@@ -124,7 +124,6 @@ class HomeFragment : BaseFragment(),RecyclerAdapter.Listener,RecycleRecommenAdap
         val welcomeTv:TextView = view.findViewById(R.id.tv_welcome_message)
         welcomeTv.text = welcomeMessage
     }
-
     private fun initObserve(){
         homeViewModel.dataLoading.observe(viewLifecycleOwner, Observer {
             if (it) showLoading() else dismissLoading()
