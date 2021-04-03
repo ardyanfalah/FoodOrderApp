@@ -65,7 +65,7 @@ class OrderViewModel : BaseVM() {
         listMenu.value!!.forEach { menu->
             var temp=RatingModel.Rating(
                 id_rating = 0,
-                id_plgn = 1,
+                id_plgn = SessionHelper["id",0],
                 id_menu = menu.id_menu!!,
                 catatan = (if(menu.catatan != null) menu.catatan else "").toString(),
                 nilai = if(menu.rating != null) menu.rating!!.toLong() else 0,

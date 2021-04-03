@@ -108,6 +108,7 @@ class HomeViewModel : BaseVM() {
         dataLoading.postValue(true)
 
         RatingService.getRatingRekomendasi(
+            SessionHelper["id",0],
             {
                 dataLoading.postValue(false)
 

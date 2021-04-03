@@ -15,12 +15,13 @@ import okhttp3.RequestBody
 object RatingService {
 
     fun getRatingRekomendasi(
+        id:Int,
         onSuccess: (ArrayList<MenuModel.Data>?) -> Unit,
         onError: (String?) -> Unit
     ){
         RetrofitClient.getInstance()
             ?.create(IRating::class.java)
-            ?.getRatingRekomendasi()
+            ?.getRatingRekomendasi(id)
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribeOn(Schedulers.io())
             ?.subscribe({

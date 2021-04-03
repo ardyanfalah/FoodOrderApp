@@ -13,16 +13,20 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 private const val PROTOCOL = "http://"
-//private const val BASE_URL = "192.168.100.6"
-private const val BASE_URL = "192.168.1.166"
+private const val BASE_URL = "192.168.100.6"
+//private const val BASE_URL = "192.168.1.9"
 //private const val BASE_URL = "192.168.1.74"
 //private const val BASE_URL = "192.168.1.87"
 
-//private const val PORT_V1 = ":8080"
+private const val PORT_V1 = ":8080"
 private const val PATH = "/food-order/"
 private const val IMAGE = "/uploads/"
-private var API = PROTOCOL + BASE_URL  + PATH
-var IMG = PROTOCOL + BASE_URL  + PATH + IMAGE
+//private var API = PROTOCOL + BASE_URL  + PATH
+//var IMG = PROTOCOL + BASE_URL  + PATH + IMAGE
+
+private var API = PROTOCOL + BASE_URL + PORT_V1 + PATH
+var IMG = PROTOCOL + BASE_URL + PORT_V1 + PATH + IMAGE
+
 
 object RetrofitClient {
     private var retrofitV1: Retrofit? = null

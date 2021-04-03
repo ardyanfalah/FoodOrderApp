@@ -8,13 +8,14 @@ import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface IRating {
     @GET("RatingAPI")
     fun getRating(): Observable<RatingModel.ResponseRating>
 
-    @GET("RatingAPI/rekomendasi")
-    fun getRatingRekomendasi(): Observable<MenuModel.ResponseType>
+    @GET("RatingAPI/rekomendasi/{id}")
+    fun getRatingRekomendasi(@Path("id") id:Int): Observable<MenuModel.ResponseType>
 
     @POST("RatingAPI")
     fun postRating(@Body param: RequestBody): Observable<RatingModel.ResponseType>
